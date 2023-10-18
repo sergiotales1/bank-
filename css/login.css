@@ -1,0 +1,32 @@
+@import url(normalize.css);
+@import url(reset.css);
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-login {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 1px solid black;
+}
+
+input {
+  border: 1px solid black;
+}
+
+label {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.btn {
+  border: 1px solid;
+  margin-top: 1rem;
+}

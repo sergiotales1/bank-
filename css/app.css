@@ -1,0 +1,22 @@
+@import url(normalize.css);
+@import url(reset.css);
+
+body {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-app {
+  width: 500px;
+}
+.balance {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.movements {
+  display: grid;
+  grid-template-columns: 1fr;
+}
