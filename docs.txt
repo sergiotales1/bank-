@@ -1,0 +1,10 @@
+login() :
+will login into the account established using username and pin input values.
+
+displayUI(movements) : 
+is a function that retrieve movements array and will display into the movements container every row of the transition including value, index and if its a deposit or withdrawal
+
+
+PROBLEMS: 
+
+1- when we reload the page to pass from the login.html to app we lost the currentAccount object, need to implement some way of persist that information.

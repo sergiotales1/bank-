@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/app.css" />
@@ -21,6 +22,34 @@
         <div class="movement-index">1 withdrawal</div>
         <div class="movement-value">-200$</div>
       </div>
+
+      <!-- transfer -->
+      <div class="transfer">
+        <label for="">Transfer to:</label>
+        <input type="text" id="transfer-to-input" />
+        <label>Amount:</label>
+        <input type="text" id="transfer-amount-input" />
+        <button class="transfer-btn btn">Transfer</button>
+      </div>
+
+      <!-- request transfer to another acc -->
+      <div class="request">
+        <label for="">Request to:</label>
+        <input type="text" id="request-to-input" />
+        <label>Amount:</label>
+        <input type="text" id="request-amount-input" />
+        <button class="request-btn btn">Request</button>
+      </div>
+
+      <!-- close account -->
+      <div class="close">
+        <label for="">Confirm username: </label>
+        <input type="text" id="close-username-input" />
+        <label>Pin:</label>
+        <input type="text" id="close-pin-input" />
+        <button class="close-btn btn">close account</button>
+      </div>
     </div>
+    <script src="./js/script.js"></script>
   </body>
 </html>
