@@ -1,9 +1,15 @@
 login() :
 will login into the account established using username and pin input values.
+executes webStoreAccounts() search for currentAccount and store the correspondent array
+sets currentAccount.active to true and store it into localStorage
+
 
 displayUI(movements) : 
 is a function that retrieve movements array and will display into the movements container every row of the transition including value, index and if its a deposit or withdrawal
+using getItem we retrieve from localStorage with a forEach the account that have the active property set to true, them we use this account to display the movements array on the UI.
 
+webStoreAccounts() :
+sets all accounts.active to false and store them into localStorage.
 
 PROBLEMS: 
 
