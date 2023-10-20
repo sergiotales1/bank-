@@ -21,31 +21,31 @@ const account2 = {
 const accounts = [account1, account2];
 let currentAccount;
 
-//function created to update local storage DON'T IS WORKING
-function updateLocalStorage() {
-  accounts.forEach(element => {
-    localStorage.setItem(element.username, JSON.stringify(element));
-  });
+//function created to update local storage
+function updateLocalStorage(curArr) {
+  localStorage.setItem(curArr.username, JSON.stringify(curArr));
 }
 
 // this is the function that store all accounts into localStorage
-function webStoreAccounts() {
+function initializeLocalStorage() {
   // creating the test variables into local storage
+
   accounts.forEach((element, index) => {
     element.balance = element.movements.reduce((acc, cur) => acc + cur);
     element.active = false;
     localStorage.setItem(element.username, JSON.stringify(element));
   });
+  console.log(accounts);
 }
 // the login function only needs to redirect the user into the app page
 function login() {
-  webStoreAccounts();
+  initializeLocalStorage();
   // saving the current account that we are into
   currentAccount = accounts.find(
     acc => acc.username === loginUsername.value && acc.pin === Number(loginPw.value)
   );
   currentAccount.active = true;
-  localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
+  updateLocalStorage(currentAccount);
 
   // block to check if currentAccount is true (values corresponding)
   if (currentAccount) {
@@ -77,13 +77,11 @@ const closePin = document.getElementById('close-pin-input');
 const btnClose = document.querySelector('.close-btn');
 
 let movements;
+let balance;
 function displayUI() {
   // this function will start when app.html load
   // searching for the account with active true
   accounts.forEach(acc => {
-    JSON.parse(localStorage.getItem(acc.username)).balance = JSON.parse(
-      localStorage.getItem(acc.username)
-    ).movements.reduce((acc, cur) => acc + cur);
     // we need a way to make this work!
     if (JSON.parse(localStorage.getItem(acc.username)).active === true) {
       // storing that account into movements
@@ -94,7 +92,8 @@ function displayUI() {
 
   // using the active acc to display the ui
   labelBalance.innerHTML = currentAccount.balance;
-
+  console.log(currentAccount.balance);
+  console.log(movements);
   // looping through acc.movements and displaying the movements.
   movementsContainer.innerHTML = '';
   movements.forEach((element, index) => {
@@ -116,15 +115,36 @@ function displayUI() {
       receiverAcc &&
       receiverAcc.username !== currentAccount.username
     ) {
+      // updating movements array with the new transfer
       currentAccount.movements.push(-amount);
       receiverAcc.movements.push(amount);
       transferAmount.value = transferToInput.value = '';
-      localStorage.setItem(receiverAcc.username, JSON.stringify(receiverAcc));
-      localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
-      console.log(receiverAcc);
-      console.log(currentAccount);
+      // updating balance with new values
+      setBalance(currentAccount);
+
+      // updating localStorage
+      updateLocalStorage(receiverAcc);
+      updateLocalStorage(currentAccount);
+      // localStorage.setItem(receiverAcc.username, JSON.stringify(receiverAcc));
+      // localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
       displayUI();
     }
   });
 }
-console.log('hello world');
+
+function setBalance(acc) {
+  acc.balance = acc.movements.reduce((acc, cur) => acc + cur);
+}
+
+function clearStorage() {
+  localStorage.clear();
+}
+
+function logout() {
+  // this is not working properly
+  for (let i = 0; i < accounts.length; i++) {
+    accounts[i] = JSON.parse(localStorage.getItem(accounts[i].username));
+    console.log(accounts[i]);
+  }
+  window.location.href = 'index.html';
+}

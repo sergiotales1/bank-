@@ -13,7 +13,11 @@ sets all accounts.active to false and store them into localStorage.
 
 PROBLEMS: 
 
+3- Logout and clearLocalStorage buttons has been created but they are not working, you need to find a way to use the initializeLocalStorage() function without overwriting the localStorage information (maybe we can use logout to save into local storage before login out)
+
 2- we need to clean or code because those localStorage mess is looking ugly, we need a function to do this, and we need to implement a way to get the balance and update it with the transfer event handler.
 webStoreAccounts() is too limited and we need some function that update the localStorage after some change (movement or status, etc...)
+*** SOLUTION 2 - we created the updateLocalStorage(arr) which receive the actual array and put this one into the localStorage, actually the transfer button is finished.
+
 1- when we reload the page to pass from the login.html to app we lost the currentAccount object, need to implement some way of persist that information.
 *** SOLUTION 1 - implement the localStorage and use it to persist and retrieve the data 
