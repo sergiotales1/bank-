@@ -21,12 +21,13 @@ const account2 = {
 const accounts = [account1, account2];
 let currentAccount;
 
-//function created to update local storage
+//function created to update local storage DON'T IS WORKING
 function updateLocalStorage() {
   accounts.forEach(element => {
     localStorage.setItem(element.username, JSON.stringify(element));
   });
 }
+
 // this is the function that store all accounts into localStorage
 function webStoreAccounts() {
   // creating the test variables into local storage
@@ -126,3 +127,4 @@ function displayUI() {
     }
   });
 }
+console.log('hello world');
