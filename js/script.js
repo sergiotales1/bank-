@@ -21,10 +21,17 @@ const account2 = {
 const accounts = [account1, account2];
 let currentAccount;
 
+//function created to update local storage
+function updateLocalStorage() {
+  accounts.forEach(element => {
+    localStorage.setItem(element.username, JSON.stringify(element));
+  });
+}
 // this is the function that store all accounts into localStorage
 function webStoreAccounts() {
   // creating the test variables into local storage
   accounts.forEach((element, index) => {
+    element.balance = element.movements.reduce((acc, cur) => acc + cur);
     element.active = false;
     localStorage.setItem(element.username, JSON.stringify(element));
   });
@@ -73,17 +80,22 @@ function displayUI() {
   // this function will start when app.html load
   // searching for the account with active true
   accounts.forEach(acc => {
+    JSON.parse(localStorage.getItem(acc.username)).balance = JSON.parse(
+      localStorage.getItem(acc.username)
+    ).movements.reduce((acc, cur) => acc + cur);
+    // we need a way to make this work!
     if (JSON.parse(localStorage.getItem(acc.username)).active === true) {
       // storing that account into movements
-      movements = acc.movements;
-      return;
+      movements = JSON.parse(localStorage.getItem(acc.username)).movements;
+      currentAccount = JSON.parse(localStorage.getItem(acc.username));
     }
   });
 
   // using the active acc to display the ui
-  labelBalance.innerHTML = movements.reduce((acc, cur) => acc + cur);
+  labelBalance.innerHTML = currentAccount.balance;
 
   // looping through acc.movements and displaying the movements.
+  movementsContainer.innerHTML = '';
   movements.forEach((element, index) => {
     let type = element > 0 ? 'deposit' : 'withdrawal';
     let html = `
@@ -93,5 +105,24 @@ function displayUI() {
 
     movementsContainer.insertAdjacentHTML('afterbegin', html);
   });
+
+  // TRANSFER
+  btnTransfer.addEventListener('click', () => {
+    const receiverAcc = JSON.parse(localStorage.getItem(transferToInput.value));
+    const amount = Number(transferAmount.value);
+    if (
+      amount <= currentAccount.balance &&
+      receiverAcc &&
+      receiverAcc.username !== currentAccount.username
+    ) {
+      currentAccount.movements.push(-amount);
+      receiverAcc.movements.push(amount);
+      transferAmount.value = transferToInput.value = '';
+      localStorage.setItem(receiverAcc.username, JSON.stringify(receiverAcc));
+      localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
+      console.log(receiverAcc);
+      console.log(currentAccount);
+      displayUI();
+    }
+  });
 }
-console.log(currentAccount);

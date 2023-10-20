@@ -13,4 +13,7 @@ sets all accounts.active to false and store them into localStorage.
 
 PROBLEMS: 
 
+2- we need to clean or code because those localStorage mess is looking ugly, we need a function to do this, and we need to implement a way to get the balance and update it with the transfer event handler.
+webStoreAccounts() is too limited and we need some function that update the localStorage after some change (movement or status, etc...)
 1- when we reload the page to pass from the login.html to app we lost the currentAccount object, need to implement some way of persist that information.
+*** SOLUTION 1 - implement the localStorage and use it to persist and retrieve the data 
