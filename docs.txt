@@ -1,6 +1,6 @@
 login() :
 will login into the account established using username and pin input values.
-executes webStoreAccounts() search for currentAccount and store the correspondent array
+executes initializeLocalStorage() search for currentAccount and store the correspondent array
 sets currentAccount.active to true and store it into localStorage
 
 
@@ -8,12 +8,13 @@ displayUI(movements) :
 is a function that retrieve movements array and will display into the movements container every row of the transition including value, index and if its a deposit or withdrawal
 using getItem we retrieve from localStorage with a forEach the account that have the active property set to true, them we use this account to display the movements array on the UI.
 
-webStoreAccounts() :
+initializeLocalStorage () :
 sets all accounts.active to false and store them into localStorage.
 
 PROBLEMS: 
 
 3- Logout and clearLocalStorage buttons has been created but they are not working, you need to find a way to use the initializeLocalStorage() function without overwriting the localStorage information (maybe we can use logout to save into local storage before login out)
+3.1 - now we have stored the itens perma into accounts automatically but balance is not updating anymore.
 
 2- we need to clean or code because those localStorage mess is looking ugly, we need a function to do this, and we need to implement a way to get the balance and update it with the transfer event handler.
 webStoreAccounts() is too limited and we need some function that update the localStorage after some change (movement or status, etc...)

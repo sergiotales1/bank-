@@ -29,13 +29,26 @@ function updateLocalStorage(curArr) {
 // this is the function that store all accounts into localStorage
 function initializeLocalStorage() {
   // creating the test variables into local storage
-
-  accounts.forEach((element, index) => {
-    element.balance = element.movements.reduce((acc, cur) => acc + cur);
-    element.active = false;
-    localStorage.setItem(element.username, JSON.stringify(element));
-  });
-  console.log(accounts);
+  if (JSON.parse(localStorage.getItem('initialized'))) {
+    let counter = 0;
+    Object.keys(localStorage).forEach((key, index) => {
+      if (key === 'initialized') {
+        counter = counter;
+      } else {
+        accounts[counter] = JSON.parse(localStorage.getItem(key));
+        counter++;
+      }
+    });
+    console.log(accounts);
+  } else {
+    localStorage.setItem('initialized', true);
+    accounts.forEach((element, index) => {
+      element.balance = element.movements.reduce((acc, cur) => acc + cur);
+      element.active = false;
+      element.index = index;
+      localStorage.setItem(element.username, JSON.stringify(element));
+    });
+  }
 }
 // the login function only needs to redirect the user into the app page
 function login() {
