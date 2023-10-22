@@ -39,6 +39,7 @@ function initializeLocalStorage() {
         accounts[counter] = JSON.parse(localStorage.getItem(key));
         accounts[counter].balance = accounts[counter].movements.reduce((acc, cur) => acc + cur);
         accounts[counter].active = false;
+        accounts[counter].requestedMoves = [];
 
         localStorage.setItem(accounts[counter].username, JSON.stringify(accounts[counter]));
         console.log(accounts[counter]);
@@ -51,6 +52,7 @@ function initializeLocalStorage() {
       element.balance = element.movements.reduce((acc, cur) => acc + cur);
       element.active = false;
       element.index = index;
+      element.requestedMoves = [];
       localStorage.setItem(element.username, JSON.stringify(element));
     });
   }
@@ -126,7 +128,7 @@ function displayUI() {
 
   // TRANSFER
   btnTransfer.addEventListener('click', () => {
-    const receiverAcc = JSON.parse(localStorage.getItem(transferToInput.value));
+    const receiverAcc = retrieveAcc(transferToInput.value);
     const amount = Number(transferAmount.value);
     if (
       amount <= currentAccount.balance &&
@@ -148,6 +150,34 @@ function displayUI() {
       displayUI();
     }
   });
+
+  // REQUEST
+  btnRequest.addEventListener('click', () => {
+    const requestedAcc = retrieveAcc(requestToInput.value);
+    const amount = +requestAmount.value;
+    console.log(currentAccount, requestedAcc, amount);
+    if (
+      requestedAcc !== currentAccount.username &&
+      requestedAcc.balance >= amount &&
+      amount > 0 &&
+      requestedAcc
+    ) {
+      requestedAcc.requestedMoves.push(amount);
+      updateLocalStorage(requestedAcc);
+      requestToInput.value = requestAmount.value = '';
+    }
+  });
+
+  // CLOSE ACCOUNT
+  btnClose.addEventListener('click', () => {
+    const closeAcc = retrieveAcc(closeUsername.value);
+    if (closeAcc.username === currentAccount.username && currentAccount.pin === +closePin.value) {
+      accounts.splice(currentAccount.index, 1);
+      localStorage.removeItem(currentAccount.username);
+      document.querySelector('.closeAcc-modal').classList.toggle('hidden');
+      console.log(accounts);
+    }
+  });
 }
 
 function setBalance(acc) {
@@ -156,6 +186,10 @@ function setBalance(acc) {
 
 function clearStorage() {
   localStorage.clear();
+}
+
+function retrieveAcc(username) {
+  return JSON.parse(localStorage.getItem(username));
 }
 
 function logout() {
