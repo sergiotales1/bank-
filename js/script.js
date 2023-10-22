@@ -18,7 +18,7 @@ const account2 = {
   movements: [350, -200, 1040, -500, -1000, 540, 800, -30],
 };
 
-const accounts = [account1, account2];
+let accounts = [account1, account2];
 let currentAccount;
 
 //function created to update local storage
@@ -31,21 +31,7 @@ function initializeLocalStorage() {
   // creating the test variables into local storage
   if (JSON.parse(localStorage.getItem('initialized'))) {
     // if localStorage is already settled we just update the accounts array doesn't changing the localStorage
-    let counter = 0;
-    Object.keys(localStorage).forEach((key, index) => {
-      if (key === 'initialized') {
-        counter = counter;
-      } else {
-        accounts[counter] = JSON.parse(localStorage.getItem(key));
-        accounts[counter].balance = accounts[counter].movements.reduce((acc, cur) => acc + cur);
-        accounts[counter].active = false;
-        accounts[counter].requestedMoves = [];
-
-        localStorage.setItem(accounts[counter].username, JSON.stringify(accounts[counter]));
-        console.log(accounts[counter]);
-        counter++;
-      }
-    });
+    setAccountsArray(true);
   } else {
     localStorage.setItem('initialized', true);
     accounts.forEach((element, index) => {
@@ -70,7 +56,6 @@ function login() {
   // block to check if currentAccount is true (values corresponding)
   if (currentAccount) {
     window.location.href = 'app.html';
-    // displayUI(currentAccount.movements); ------- ERROR we need a way to persist objects through page reload
   } else {
     // block in case of password or username inexistent
   }
@@ -101,19 +86,19 @@ let balance;
 function displayUI() {
   // this function will start when app.html load
   // searching for the account with active true
+  console.log(accounts);
+  setAccountsArray(false);
+  console.log(accounts);
   accounts.forEach(acc => {
-    // we need a way to make this work!
-    if (JSON.parse(localStorage.getItem(acc.username)).active === true) {
+    if (acc.active === true) {
       // storing that account into movements
-      movements = JSON.parse(localStorage.getItem(acc.username)).movements;
-      currentAccount = JSON.parse(localStorage.getItem(acc.username));
+      movements = acc.movements;
+      currentAccount = acc;
     }
   });
 
   // using the active acc to display the ui
   labelBalance.innerHTML = currentAccount.balance;
-  console.log(currentAccount.balance);
-  console.log(movements);
   // looping through acc.movements and displaying the movements.
   movementsContainer.innerHTML = '';
   movements.forEach((element, index) => {
@@ -155,7 +140,6 @@ function displayUI() {
   btnRequest.addEventListener('click', () => {
     const requestedAcc = retrieveAcc(requestToInput.value);
     const amount = +requestAmount.value;
-    console.log(currentAccount, requestedAcc, amount);
     if (
       requestedAcc !== currentAccount.username &&
       requestedAcc.balance >= amount &&
@@ -171,11 +155,15 @@ function displayUI() {
   // CLOSE ACCOUNT
   btnClose.addEventListener('click', () => {
     const closeAcc = retrieveAcc(closeUsername.value);
-    if (closeAcc.username === currentAccount.username && currentAccount.pin === +closePin.value) {
+    if (
+      closeAcc &&
+      closeAcc.username === currentAccount.username &&
+      closeAcc.pin === +closePin.value
+    ) {
+      // we remove the specified index from accounts array
       accounts.splice(currentAccount.index, 1);
       localStorage.removeItem(currentAccount.username);
       document.querySelector('.closeAcc-modal').classList.toggle('hidden');
-      console.log(accounts);
     }
   });
 }
@@ -196,7 +184,28 @@ function logout() {
   // this is not working properly
   for (let i = 0; i < accounts.length; i++) {
     accounts[i] = JSON.parse(localStorage.getItem(accounts[i].username));
-    console.log(accounts[i]);
   }
   window.location.href = 'index.html';
+}
+
+function setAccountsArray(activeAllFalse) {
+  accounts = [];
+  let counter = 0;
+  Object.keys(localStorage).forEach(key => {
+    if (key === 'initialized') {
+      counter = counter;
+    } else {
+      accounts[counter] = JSON.parse(localStorage.getItem(key));
+      accounts[counter].balance = accounts[counter].movements.reduce((acc, cur) => acc + cur);
+      if (activeAllFalse) {
+        accounts[counter].active = false;
+      } else {
+        accounts[counter].active === true ? null : (accounts[counter].active = false);
+      }
+      accounts[counter].requestedMoves = [];
+
+      localStorage.setItem(accounts[counter].username, JSON.stringify(accounts[counter]));
+      counter++;
+    }
+  });
 }

@@ -13,8 +13,12 @@ sets all accounts.active to false and store them into localStorage.
 
 PROBLEMS: 
 
+5- Error handling like alerts if theres no correspondent account and another things need to receive some attention, they are messing with the app flow
+
 4- closeAccount button created and settled but we are having an strange error need to fix this 
 4.1 - requestAcc button is also created and we are pushing into requestMoves array the new request amounts (very incomplete better check again after fixing closeAccount)
+*** SOLUTION 4 - to fix the closeAccount error we done some changes into the initializeLocalStorage behavior and accounts array also, fully setting to 0 if initialize be already true.
+*** SOLUTION 4.1 ? - some errors keep appearing randomly, we still have to see it 
  
 3- Logout and clearLocalStorage buttons has been created but they are not working, you need to find a way to use the initializeLocalStorage() function without overwriting the localStorage information (maybe we can use logout to save into local storage before login out)
 3.1 - now we have stored the itens perma into accounts automatically but balance is not updating anymore.
