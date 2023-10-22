@@ -30,16 +30,21 @@ function updateLocalStorage(curArr) {
 function initializeLocalStorage() {
   // creating the test variables into local storage
   if (JSON.parse(localStorage.getItem('initialized'))) {
+    // if localStorage is already settled we just update the accounts array doesn't changing the localStorage
     let counter = 0;
     Object.keys(localStorage).forEach((key, index) => {
       if (key === 'initialized') {
         counter = counter;
       } else {
         accounts[counter] = JSON.parse(localStorage.getItem(key));
+        accounts[counter].balance = accounts[counter].movements.reduce((acc, cur) => acc + cur);
+        accounts[counter].active = false;
+
+        localStorage.setItem(accounts[counter].username, JSON.stringify(accounts[counter]));
+        console.log(accounts[counter]);
         counter++;
       }
     });
-    console.log(accounts);
   } else {
     localStorage.setItem('initialized', true);
     accounts.forEach((element, index) => {
