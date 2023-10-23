@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/login.css" />
   </head>
   <body>
+    <div class="overlay hidden"></div>
     <div class="container-login">
       <img
         src="https://images.unsplash.com/photo-1662027067763-770376e710f5?auto=format&fit=crop&q=80&w=2062&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -23,7 +24,10 @@
       <button type="button" class="login-button btn" onclick="login()">Login</button>
       <button type="button" class="btn" onclick="clearStorage()">CLEAR LOCAL STORAGE</button>
     </div>
-
+    <div class="error-modal-login hidden">
+      <p id="login-error-text">Error:</p>
+      <button id="login-error-btn">X</button>
+    </div>
     <script src="./js/script.js"></script>
   </body>
 </html>

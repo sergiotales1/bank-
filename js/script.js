@@ -46,18 +46,18 @@ function initializeLocalStorage() {
 // the login function only needs to redirect the user into the app page
 function login() {
   initializeLocalStorage();
-  // saving the current account that we are into
-  currentAccount = accounts.find(
-    acc => acc.username === loginUsername.value && acc.pin === Number(loginPw.value)
-  );
-  currentAccount.active = true;
-  updateLocalStorage(currentAccount);
-
-  // block to check if currentAccount is true (values corresponding)
-  if (currentAccount) {
+  // check if the values are exist
+  if (accounts.some(acc => acc.username === loginUsername.value && acc.pin === +loginPw.value)) {
+    // saving the current account that we are into
+    currentAccount = accounts.find(
+      acc => acc.username === loginUsername.value && acc.pin === Number(loginPw.value)
+    );
+    currentAccount.active = true;
+    updateLocalStorage(currentAccount);
     window.location.href = 'app.html';
   } else {
     // block in case of password or username inexistent
+    changeLoginModal();
   }
 }
 
@@ -86,9 +86,7 @@ let balance;
 function displayUI() {
   // this function will start when app.html load
   // searching for the account with active true
-  console.log(accounts);
   setAccountsArray(false);
-  console.log(accounts);
   accounts.forEach(acc => {
     if (acc.active === true) {
       // storing that account into movements
@@ -209,3 +207,25 @@ function setAccountsArray(activeAllFalse) {
     }
   });
 }
+
+// LOGIN ERROR MODAL
+const errorLogin = document.querySelector('.error-modal-login');
+const overlay = document.querySelector('.overlay');
+const errorText = document.getElementById('login-error-text');
+
+const changeLoginModal = function () {
+  // tests what is the reason of the error NEED TO WORK ON!!!
+  // first error = when we don't find an correspondent account
+  errorText.textContent = "Error: We couldn't find that match of account. Please check again!";
+  // show the error modal
+  errorLogin.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+  const removeHidden = function () {
+    // pick the overlay and made them disappear
+    overlay.classList.add('hidden');
+    errorLogin.classList.add('hidden');
+  };
+
+  document.getElementById('login-error-btn').addEventListener('click', removeHidden);
+  overlay.addEventListener('click', removeHidden);
+};

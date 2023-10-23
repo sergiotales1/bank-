@@ -29,4 +29,32 @@ label {
 .btn {
   border: 1px solid;
   margin-top: 1rem;
+  cursor: pointer;
+}
+
+.error-modal-login {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  background-color: slateblue;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(1.9px);
+}
+
+.hidden {
+  display: none;
 }
