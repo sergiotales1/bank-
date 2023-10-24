@@ -57,7 +57,7 @@ function login() {
     window.location.href = 'app.html';
   } else {
     // block in case of password or username inexistent
-    changeLoginModal();
+    changeErrorModal('login');
   }
 }
 
@@ -136,16 +136,24 @@ function displayUI() {
 
   // REQUEST
   btnRequest.addEventListener('click', () => {
-    const requestedAcc = retrieveAcc(requestToInput.value);
-    const amount = +requestAmount.value;
-    if (
-      requestedAcc !== currentAccount.username &&
-      requestedAcc.balance >= amount &&
-      amount > 0 &&
-      requestedAcc
-    ) {
-      requestedAcc.requestedMoves.push(amount);
-      updateLocalStorage(requestedAcc);
+    // test if exists the requested acc into the db
+    if (accounts.some(acc => acc.username === requestToInput.value)) {
+      const requestedAcc = retrieveAcc(requestToInput.value);
+      const amount = +requestAmount.value;
+      if (
+        requestedAcc !== currentAccount.username &&
+        requestedAcc.balance >= amount &&
+        amount > 0 &&
+        requestedAcc
+      ) {
+        requestedAcc.requestedMoves.push(amount);
+        updateLocalStorage(requestedAcc);
+        requestToInput.value = requestAmount.value = '';
+      }
+    } else {
+      // shows the modal
+
+      changeErrorModal('app');
       requestToInput.value = requestAmount.value = '';
     }
   });
@@ -161,7 +169,8 @@ function displayUI() {
       // we remove the specified index from accounts array
       accounts.splice(currentAccount.index, 1);
       localStorage.removeItem(currentAccount.username);
-      document.querySelector('.closeAcc-modal').classList.toggle('hidden');
+      changeErrorModal('close');
+      // document.querySelector('.closeAcc-modal').classList.toggle('hidden');
     }
   });
 }
@@ -172,6 +181,7 @@ function setBalance(acc) {
 
 function clearStorage() {
   localStorage.clear();
+  window.location.reload();
 }
 
 function retrieveAcc(username) {
@@ -208,24 +218,73 @@ function setAccountsArray(activeAllFalse) {
   });
 }
 
-// LOGIN ERROR MODAL
-const errorLogin = document.querySelector('.error-modal-login');
-const overlay = document.querySelector('.overlay');
-const errorText = document.getElementById('login-error-text');
+const changeErrorModal = function (modal) {
+  // LOGIN ERROR MODAL
+  const errorLogin = document.querySelector('.error-modal-login');
+  const overlay = document.querySelector('.overlay');
+  const errorText = document.getElementById('login-error-text');
+  if (modal === 'login') {
+    // tests what is the reason of the error NEED TO WORK ON!!!
+    // first error = when we don't find an correspondent account
+    errorText.textContent = "Error: We couldn't find that match of account. Please check again!";
+    // show the error modal
+    errorLogin.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+    const removeHidden = function () {
+      // pick the overlay and made them disappear
+      overlay.classList.add('hidden');
+      errorLogin.classList.add('hidden');
+      loginUsername.value = loginPw = '';
+    };
 
-const changeLoginModal = function () {
-  // tests what is the reason of the error NEED TO WORK ON!!!
-  // first error = when we don't find an correspondent account
-  errorText.textContent = "Error: We couldn't find that match of account. Please check again!";
-  // show the error modal
-  errorLogin.classList.remove('hidden');
-  overlay.classList.remove('hidden');
-  const removeHidden = function () {
-    // pick the overlay and made them disappear
-    overlay.classList.add('hidden');
-    errorLogin.classList.add('hidden');
-  };
+    document.getElementById('login-error-btn').addEventListener('click', removeHidden);
+    overlay.addEventListener('click', removeHidden);
+  } else if (modal === 'app') {
+    // APP ERROR MODAL
+    const errorApp = document.querySelector('.app-error-modal');
+    const overlayApp = document.querySelector('.overlay-app');
+    const errorAppText = document.getElementById('app-error-text');
 
-  document.getElementById('login-error-btn').addEventListener('click', removeHidden);
-  overlay.addEventListener('click', removeHidden);
+    // tests what is the reason of the error NEED TO WORK ON!!!
+    // first error = when we don't find an correspondent account
+    errorAppText.textContent =
+      "Error: We couldn't find that match of account to request. Please check again!";
+    // show the error modal
+    errorApp.classList.remove('hidden');
+    overlayApp.classList.remove('hidden');
+    const removeHidden = function () {
+      // pick the overlay and made them disappear
+      overlayApp.classList.add('hidden');
+      errorApp.classList.add('hidden');
+      loginUsername.value = loginPw = '';
+    };
+
+    document.getElementById('app-error-btn').addEventListener('click', removeHidden);
+    overlayApp.addEventListener('click', removeHidden);
+  } else if (modal === 'close') {
+    // APP ERROR MODAL
+    const errorApp = document.querySelector('.app-error-modal');
+    const overlayApp = document.querySelector('.overlay-app');
+    const errorAppText = document.getElementById('app-error-text');
+
+    // tests what is the reason of the error NEED TO WORK ON!!!
+    // first error = when we don't find an correspondent account
+    errorAppText.textContent = 'ACCOUNT CLOSED PRESS THE BUTTON TO GO BACK TO LOGIN';
+    // show the error modal
+    errorApp.classList.remove('hidden');
+    overlayApp.classList.remove('hidden');
+    const removeHidden = function (param) {
+      // pick the overlay and made them disappear
+      overlayApp.classList.add('hidden');
+      errorApp.classList.add('hidden');
+      if (param === 'goToLogin') window.location.href = 'index.html';
+    };
+
+    document.getElementById('app-error-btn').addEventListener('click', () => {
+      removeHidden('goToLogin');
+    });
+    overlayApp.addEventListener('click', () => {
+      removeHidden('goToLogin');
+    });
+  }
 };

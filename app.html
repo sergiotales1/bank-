@@ -8,6 +8,11 @@
     <title>App</title>
   </head>
   <body onload="displayUI()">
+    <div class="overlay-app hidden"></div>
+    <div class="app-error-modal hidden">
+      <p id="app-error-text">Error:</p>
+      <button id="app-error-btn">X</button>
+    </div>
     <div class="container-app">
       <!-- Balance -->
       <div class="balance">
@@ -52,10 +57,7 @@
       </div>
     </div>
     <button onclick="logout()">LOGOUT</button>
-    <div class="closeAcc-modal hidden">
-      <p>ACCOUNT CLOSED</p>
-      <button onclick="window.location.href='index.html'">Home</button>
-    </div>
+
     <script src="./js/script.js"></script>
   </body>
 </html>

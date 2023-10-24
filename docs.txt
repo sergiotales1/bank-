@@ -14,7 +14,8 @@ sets all accounts.active to false and store them into localStorage.
 PROBLEMS: 
 
 5- Error handling like alerts if theres no correspondent account and another things need to receive some attention, they are messing with the app flow
-*** 5.1 - we settled error modal on login but only this for now
+*** 5.1 - we created the error modal to the login and to request to acc
+*** 5.2 - changeErrorModal() now manages all modals into app, changing its values according to the param sent ('login', 'app' or 'goToLogin' which is from close account)
 
 4- closeAccount button created and settled but we are having an strange error need to fix this 
 4.1 - requestAcc button is also created and we are pushing into requestMoves array the new request amounts (very incomplete better check again after fixing closeAccount)
