@@ -57,7 +57,7 @@ function login() {
     window.location.href = 'app.html';
   } else {
     // block in case of password or username inexistent
-    changeErrorModal('login');
+    globalModal('login');
   }
 }
 
@@ -94,6 +94,9 @@ function displayUI() {
       currentAccount = acc;
     }
   });
+  if (currentAccount.requestedMoves.length > 0) {
+    globalModal('requests');
+  }
 
   // using the active acc to display the ui
   labelBalance.innerHTML = currentAccount.balance;
@@ -141,19 +144,20 @@ function displayUI() {
       const requestedAcc = retrieveAcc(requestToInput.value);
       const amount = +requestAmount.value;
       if (
-        requestedAcc !== currentAccount.username &&
+        requestedAcc.username !== currentAccount.username &&
         requestedAcc.balance >= amount &&
         amount > 0 &&
         requestedAcc
       ) {
-        requestedAcc.requestedMoves.push(amount);
+        // push to the array a object containing the name of requester and array of value
+        requestedAcc.requestedMoves.push([currentAccount.username, amount]);
         updateLocalStorage(requestedAcc);
         requestToInput.value = requestAmount.value = '';
-      }
+      } // we need a block to when some condition don't match
     } else {
       // shows the modal
 
-      changeErrorModal('app');
+      globalModal('app');
       requestToInput.value = requestAmount.value = '';
     }
   });
@@ -169,7 +173,7 @@ function displayUI() {
       // we remove the specified index from accounts array
       accounts.splice(currentAccount.index, 1);
       localStorage.removeItem(currentAccount.username);
-      changeErrorModal('close');
+      globalModal('close');
       // document.querySelector('.closeAcc-modal').classList.toggle('hidden');
     }
   });
@@ -196,7 +200,7 @@ function logout() {
   window.location.href = 'index.html';
 }
 
-function setAccountsArray(activeAllFalse) {
+function setAccountsArray(activeAllFalse = true) {
   accounts = [];
   let counter = 0;
   Object.keys(localStorage).forEach(key => {
@@ -210,7 +214,6 @@ function setAccountsArray(activeAllFalse) {
       } else {
         accounts[counter].active === true ? null : (accounts[counter].active = false);
       }
-      accounts[counter].requestedMoves = [];
 
       localStorage.setItem(accounts[counter].username, JSON.stringify(accounts[counter]));
       counter++;
@@ -218,7 +221,7 @@ function setAccountsArray(activeAllFalse) {
   });
 }
 
-const changeErrorModal = function (modal) {
+const globalModal = function (modal) {
   // LOGIN ERROR MODAL
   const errorLogin = document.querySelector('.error-modal-login');
   const overlay = document.querySelector('.overlay');
@@ -234,7 +237,7 @@ const changeErrorModal = function (modal) {
       // pick the overlay and made them disappear
       overlay.classList.add('hidden');
       errorLogin.classList.add('hidden');
-      loginUsername.value = loginPw = '';
+      loginUsername.value = loginPw.value = '';
     };
 
     document.getElementById('login-error-btn').addEventListener('click', removeHidden);
@@ -256,7 +259,7 @@ const changeErrorModal = function (modal) {
       // pick the overlay and made them disappear
       overlayApp.classList.add('hidden');
       errorApp.classList.add('hidden');
-      loginUsername.value = loginPw = '';
+      loginUsername.value = loginPw.value = '';
     };
 
     document.getElementById('app-error-btn').addEventListener('click', removeHidden);
@@ -286,5 +289,26 @@ const changeErrorModal = function (modal) {
     overlayApp.addEventListener('click', () => {
       removeHidden('goToLogin');
     });
+  } else if (modal === 'requests') {
+    // APP ERROR MODAL
+    const errorApp = document.querySelector('.app-error-modal');
+    const overlayApp = document.querySelector('.overlay-app');
+    const errorAppText = document.getElementById('app-error-text');
+
+    // tests what is the reason of the error NEED TO WORK ON!!!
+    // errorAppText.textContent = `You have ${currentAccount.requestedMoves.length} requests for money, ${}`;
+
+    errorAppText.textContent = `User: - ${currentAccount.requestedMoves[0][0]} -  is requesting for you a transfer of ${currentAccount.requestedMoves[0][1]}$`;
+    // show the error modal
+    errorApp.classList.remove('hidden');
+    overlayApp.classList.remove('hidden');
+    const removeHidden = function () {
+      // pick the overlay and made them disappear
+      overlayApp.classList.add('hidden');
+      errorApp.classList.add('hidden');
+    };
+
+    document.getElementById('app-error-btn').addEventListener('click', removeHidden);
+    overlayApp.addEventListener('click', removeHidden);
   }
 };

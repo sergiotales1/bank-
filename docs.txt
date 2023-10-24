@@ -13,14 +13,18 @@ sets all accounts.active to false and store them into localStorage.
 
 PROBLEMS: 
 
+7- request need some attention, atm we are just printing that someone is requesting money for someone with the username and amount solicited but we need to create more interactivity with a button saying transfer or don't
+
+6- globalModal() is working but is ugly af, we need to refactor this code and clean repeated lines and transfer to inputs still need attention given that if any of the conditions to transfer is equals to false we are not telling the user what's happening just keeping the values there and don't doing anything
+
 5- Error handling like alerts if theres no correspondent account and another things need to receive some attention, they are messing with the app flow
 *** 5.1 - we created the error modal to the login and to request to acc
-*** 5.2 - changeErrorModal() now manages all modals into app, changing its values according to the param sent ('login', 'app' or 'goToLogin' which is from close account)
+*** 5.2 - globalModal() now manages all modals into app, changing its values according to the param sent ('login', 'app' or 'goToLogin' which is from close account)
 
 4- closeAccount button created and settled but we are having an strange error need to fix this 
 4.1 - requestAcc button is also created and we are pushing into requestMoves array the new request amounts (very incomplete better check again after fixing closeAccount)
 *** SOLUTION 4 - to fix the closeAccount error we done some changes into the initializeLocalStorage behavior and accounts array also, fully setting to 0 if initialize be already true.
-*** SOLUTION 4.1 ? - some errors keep appearing randomly, we still have to see it 
+*** SOLUTION 4.1 -  
  
 3- Logout and clearLocalStorage buttons has been created but they are not working, you need to find a way to use the initializeLocalStorage() function without overwriting the localStorage information (maybe we can use logout to save into local storage before login out)
 3.1 - now we have stored the itens perma into accounts automatically but balance is not updating anymore.
