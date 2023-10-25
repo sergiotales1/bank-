@@ -206,6 +206,12 @@ const globalModal = function (modal) {
   const errorLogin = document.querySelector('.error-modal-login');
   const overlay = document.querySelector('.overlay');
   const errorText = document.getElementById('login-error-text');
+
+  // APP ERROR MODAL
+  const errorApp = document.querySelector('.app-error-modal');
+  const overlayApp = document.querySelector('.overlay-app');
+  const errorAppText = document.getElementById('app-error-text');
+
   if (modal === 'login') {
     // tests what is the reason of the error NEED TO WORK ON!!!
     // first error = when we don't find an correspondent account
@@ -217,78 +223,31 @@ const globalModal = function (modal) {
       // pick the overlay and made them disappear
       overlay.classList.add('hidden');
       errorLogin.classList.add('hidden');
-      loginUsername.value = loginPw.value = '';
     };
+    loginUsername.value = loginPw.value = '';
 
     document.getElementById('login-error-btn').addEventListener('click', removeHidden);
     overlay.addEventListener('click', removeHidden);
   } else if (modal === 'app') {
     // APP ERROR MODAL
-    const errorApp = document.querySelector('.app-error-modal');
-    const overlayApp = document.querySelector('.overlay-app');
-    const errorAppText = document.getElementById('app-error-text');
 
-    // tests what is the reason of the error NEED TO WORK ON!!!
     // first error = when we don't find an correspondent account
     errorAppText.textContent =
       "Error: We couldn't find that match of account to request. Please check again!";
     // show the error modal
-    errorApp.classList.remove('hidden');
-    overlayApp.classList.remove('hidden');
-    const removeHidden = function () {
-      // pick the overlay and made them disappear
-      overlayApp.classList.add('hidden');
-      errorApp.classList.add('hidden');
-    };
-
-    document.getElementById('app-error-btn').addEventListener('click', removeHidden);
-    overlayApp.addEventListener('click', removeHidden);
+    toggleModal(errorApp, overlayApp);
   } else if (modal === 'close') {
-    // APP ERROR MODAL
-    const errorApp = document.querySelector('.app-error-modal');
-    const overlayApp = document.querySelector('.overlay-app');
-    const errorAppText = document.getElementById('app-error-text');
-
-    // tests what is the reason of the error NEED TO WORK ON!!!
     // first error = when we don't find an correspondent account
     errorAppText.textContent = 'ACCOUNT CLOSED PRESS THE BUTTON TO GO BACK TO LOGIN';
-    // show the error modal
-    errorApp.classList.remove('hidden');
-    overlayApp.classList.remove('hidden');
-    const removeHidden = function (param) {
-      // pick the overlay and made them disappear
-      overlayApp.classList.add('hidden');
-      errorApp.classList.add('hidden');
-      if (param === 'goToLogin') window.location.href = 'index.html';
-    };
-
-    document.getElementById('app-error-btn').addEventListener('click', () => {
-      removeHidden('goToLogin');
-    });
-    overlayApp.addEventListener('click', () => {
-      removeHidden('goToLogin');
-    });
+    //toggle off the modal and send to index.html
+    toggleModal(errorApp, overlayApp, 'close');
   } else if (modal === 'requests') {
     // APP ERROR MODAL
-    const errorApp = document.querySelector('.app-error-modal');
-    const overlayApp = document.querySelector('.overlay-app');
-
-    // tests what is the reason of the error NEED TO WORK ON!!!
-    // errorAppText.textContent = `You have ${currentAccount.requestedMoves.length} requests for money, ${}`;
 
     // here we are recreating the appModal just to show the right values and messages and also create the transfer or ignore button
     errorApp.innerHTML = `<p id="app-error-text">User - ${currentAccount.requestedMoves[0][0]} -  is requesting for you a transfer of ${currentAccount.requestedMoves[0][1]}$</p><button id="app-error-btn">ignore</button><button id="modal-transfer-button" onclick="transfer('0')">transfer</button>`;
-    // show the error modal
-    errorApp.classList.remove('hidden');
-    overlayApp.classList.remove('hidden');
-    const removeHidden = function () {
-      // pick the overlay and made them disappear
-      overlayApp.classList.add('hidden');
-      errorApp.classList.add('hidden');
-    };
-
-    document.getElementById('app-error-btn').addEventListener('click', removeHidden);
-    overlayApp.addEventListener('click', removeHidden);
+    // Shows the modal
+    toggleModal(errorApp, overlayApp);
   }
 };
 
@@ -325,5 +284,32 @@ function transfer(index) {
     displayUI();
     // reloading to avoid bugs
     window.location.reload();
+  } else {
+    transferAmount.value = transferToInput.value = '';
+    globalModal('app');
   }
+}
+
+// toggler modal
+function toggleModal(errorApp, overlayApp, closeModal) {
+  // show the error modal
+  errorApp.classList.remove('hidden');
+  overlayApp.classList.remove('hidden');
+  const removeHidden = function () {
+    // pick the overlay and made them disappear
+    overlayApp.classList.add('hidden');
+    errorApp.classList.add('hidden');
+    if (closeModal) window.location.href = 'index.html';
+  };
+
+  if (closeModal) {
+    document.getElementById('app-error-btn').addEventListener('click', () => {
+      removeHidden(closeModal);
+    });
+    overlayApp.addEventListener('click', () => {
+      removeHidden(closeModal);
+    });
+  }
+  document.getElementById('app-error-btn').addEventListener('click', removeHidden);
+  overlayApp.addEventListener('click', removeHidden);
 }

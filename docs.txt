@@ -20,6 +20,8 @@ PROBLEMS:
 *** SOLUTION 7 - we now recreate the entire modal so we are showing the user that is requesting, the amount and we are also giving to the user 2 options [transfer, ignore], if he ignores every time that the displayUI is called, if he chooses transfer then the requestedMove will be deleted and the money will be transferred.
 
 6- globalModal() is working but is ugly af, we need to refactor this code and clean repeated lines and transfer to inputs still need attention given that if any of the conditions to transfer is equals to false we are not telling the user what's happening just keeping the values there and don't doing anything
+*** SOLUTION 6 - now we have toggleModal(), this function accepts 3 params, first is the modal and second is the overlay, and if we send the third (which is not required to work) we automatically will send the user to index.html, this would be the case of the close modal that appears when we close an account.
+
 
 5- Error handling like alerts if theres no correspondent account and another things need to receive some attention, they are messing with the app flow
 *** SOLUTION 5.1 - we created the error modal to the login and to request to acc
