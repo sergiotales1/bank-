@@ -11,15 +11,19 @@ using getItem we retrieve from localStorage with a forEach the account that have
 initializeLocalStorage () :
 sets all accounts.active to false and store them into localStorage.
 
+transfer(type) :
+this is the same function that is invoked once you click btnTransfer, and now the difference is that we also can do the whole process of transferring money into the modal button Transfer that shows to the user if some account has requested money to him.
+
 PROBLEMS: 
 
 7- request need some attention, atm we are just printing that someone is requesting money for someone with the username and amount solicited but we need to create more interactivity with a button saying transfer or don't
+*** SOLUTION 7 - we now recreate the entire modal so we are showing the user that is requesting, the amount and we are also giving to the user 2 options [transfer, ignore], if he ignores every time that the displayUI is called, if he chooses transfer then the requestedMove will be deleted and the money will be transferred.
 
 6- globalModal() is working but is ugly af, we need to refactor this code and clean repeated lines and transfer to inputs still need attention given that if any of the conditions to transfer is equals to false we are not telling the user what's happening just keeping the values there and don't doing anything
 
 5- Error handling like alerts if theres no correspondent account and another things need to receive some attention, they are messing with the app flow
-*** 5.1 - we created the error modal to the login and to request to acc
-*** 5.2 - globalModal() now manages all modals into app, changing its values according to the param sent ('login', 'app' or 'goToLogin' which is from close account)
+*** SOLUTION 5.1 - we created the error modal to the login and to request to acc
+*** SOLUTION 5.2 - globalModal() now manages all modals into app, changing its values according to the param sent ('login', 'app' or 'goToLogin' which is from close account)
 
 4- closeAccount button created and settled but we are having an strange error need to fix this 
 4.1 - requestAcc button is also created and we are pushing into requestMoves array the new request amounts (very incomplete better check again after fixing closeAccount)

@@ -114,33 +114,14 @@ function displayUI() {
 
   // TRANSFER
   btnTransfer.addEventListener('click', () => {
-    const receiverAcc = retrieveAcc(transferToInput.value);
-    const amount = Number(transferAmount.value);
-    if (
-      amount <= currentAccount.balance &&
-      receiverAcc &&
-      receiverAcc.username !== currentAccount.username
-    ) {
-      // updating movements array with the new transfer
-      currentAccount.movements.push(-amount);
-      receiverAcc.movements.push(amount);
-      transferAmount.value = transferToInput.value = '';
-      // updating balance with new values
-      setBalance(currentAccount);
-
-      // updating localStorage
-      updateLocalStorage(receiverAcc);
-      updateLocalStorage(currentAccount);
-      // localStorage.setItem(receiverAcc.username, JSON.stringify(receiverAcc));
-      // localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
-      displayUI();
-    }
+    transfer();
   });
 
   // REQUEST
   btnRequest.addEventListener('click', () => {
     // test if exists the requested acc into the db
     if (accounts.some(acc => acc.username === requestToInput.value)) {
+      console.log('a');
       const requestedAcc = retrieveAcc(requestToInput.value);
       const amount = +requestAmount.value;
       if (
@@ -156,7 +137,6 @@ function displayUI() {
       } // we need a block to when some condition don't match
     } else {
       // shows the modal
-
       globalModal('app');
       requestToInput.value = requestAmount.value = '';
     }
@@ -259,7 +239,6 @@ const globalModal = function (modal) {
       // pick the overlay and made them disappear
       overlayApp.classList.add('hidden');
       errorApp.classList.add('hidden');
-      loginUsername.value = loginPw.value = '';
     };
 
     document.getElementById('app-error-btn').addEventListener('click', removeHidden);
@@ -293,12 +272,12 @@ const globalModal = function (modal) {
     // APP ERROR MODAL
     const errorApp = document.querySelector('.app-error-modal');
     const overlayApp = document.querySelector('.overlay-app');
-    const errorAppText = document.getElementById('app-error-text');
 
     // tests what is the reason of the error NEED TO WORK ON!!!
     // errorAppText.textContent = `You have ${currentAccount.requestedMoves.length} requests for money, ${}`;
 
-    errorAppText.textContent = `User: - ${currentAccount.requestedMoves[0][0]} -  is requesting for you a transfer of ${currentAccount.requestedMoves[0][1]}$`;
+    // here we are recreating the appModal just to show the right values and messages and also create the transfer or ignore button
+    errorApp.innerHTML = `<p id="app-error-text">User - ${currentAccount.requestedMoves[0][0]} -  is requesting for you a transfer of ${currentAccount.requestedMoves[0][1]}$</p><button id="app-error-btn">ignore</button><button id="modal-transfer-button" onclick="transfer('0')">transfer</button>`;
     // show the error modal
     errorApp.classList.remove('hidden');
     overlayApp.classList.remove('hidden');
@@ -312,3 +291,39 @@ const globalModal = function (modal) {
     overlayApp.addEventListener('click', removeHidden);
   }
 };
+
+function transfer(index) {
+  let amount;
+  let receiverAcc;
+  if (index) {
+    // if index is a number then the place that is calling for transfer is the button created into the modal
+    // then we store ito into receiverAcc and bring with it the amount catch from requestedMoves array
+    receiverAcc = retrieveAcc(currentAccount.requestedMoves[+index][0]);
+    amount = currentAccount.requestedMoves[+index][1];
+    currentAccount.requestedMoves.splice(+index, 1);
+  } else {
+    receiverAcc = retrieveAcc(transferToInput.value);
+    amount = Number(transferAmount.value);
+  }
+  if (
+    amount <= currentAccount.balance &&
+    receiverAcc &&
+    receiverAcc.username !== currentAccount.username
+  ) {
+    // updating movements array with the new transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+    transferAmount.value = transferToInput.value = '';
+    // updating balance with new values
+    setBalance(currentAccount);
+
+    // updating localStorage
+    updateLocalStorage(receiverAcc);
+    updateLocalStorage(currentAccount);
+    // localStorage.setItem(receiverAcc.username, JSON.stringify(receiverAcc));
+    // localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
+    displayUI();
+    // reloading to avoid bugs
+    window.location.reload();
+  }
+}
