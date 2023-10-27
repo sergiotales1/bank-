@@ -46,6 +46,8 @@ function initializeLocalStorage() {
 // the login function only needs to redirect the user into the app page
 function login() {
   initializeLocalStorage();
+  // creating the cookie to show welcome modal
+  document.cookie = 'firstTime=false';
   // check if the values are exist
   if (accounts.some(acc => acc.username === loginUsername.value && acc.pin === +loginPw.value)) {
     // saving the current account that we are into
@@ -98,6 +100,7 @@ function displayUI() {
     globalModal('requests');
   }
 
+  displaySuccessAlert('login');
   // using the active acc to display the ui
   labelBalance.innerHTML = currentAccount.balance;
   // looping through acc.movements and displaying the movements.
@@ -131,6 +134,7 @@ function displayUI() {
         requestedAcc
       ) {
         // push to the array a object containing the name of requester and array of value
+        displaySuccessAlert('request', requestedAcc.username, amount);
         requestedAcc.requestedMoves.push([currentAccount.username, amount]);
         updateLocalStorage(requestedAcc);
         requestToInput.value = requestAmount.value = '';
@@ -177,6 +181,7 @@ function logout() {
   for (let i = 0; i < accounts.length; i++) {
     accounts[i] = JSON.parse(localStorage.getItem(accounts[i].username));
   }
+  document.cookie = 'firstTime=false';
   window.location.href = 'index.html';
 }
 
@@ -282,8 +287,11 @@ function transfer(index) {
     // localStorage.setItem(receiverAcc.username, JSON.stringify(receiverAcc));
     // localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
     displayUI();
-    // reloading to avoid bugs
-    window.location.reload();
+    displaySuccessAlert('transfer', receiverAcc.username, amount);
+    // reloading to avoid bugs request bug after transfer
+    setTimeout(() => {
+      window.location.reload();
+    }, 1425); // note that we will wait until displaySuccessAlert do all the cycle
   } else {
     transferAmount.value = transferToInput.value = '';
     globalModal('app');
@@ -312,4 +320,35 @@ function toggleModal(errorApp, overlayApp, closeModal) {
   }
   document.getElementById('app-error-btn').addEventListener('click', removeHidden);
   overlayApp.addEventListener('click', removeHidden);
+}
+
+// this is the success alert executed once we done a success transfer / request
+function displaySuccessAlert(type, to, value) {
+  const successAlert = document.querySelector('.success-alert');
+  if (type === 'request' || type === 'transfer') {
+    successAlert.innerHTML = `${capitalize(type)}ed ${value}$ to '${to}'!`;
+    successAlert.classList.remove('vanish-alert');
+    setTimeout(() => {
+      successAlert.classList.add('vanish-alert');
+    }, 1300);
+  } else if (type === 'login' && getCookie()) {
+    // if type === login and its the first time login into the account then we display the modal
+    successAlert.innerHTML = `Welcome ${currentAccount.username}!`;
+    document.cookie = 'firstTime=true';
+    successAlert.classList.remove('vanish-alert');
+    setTimeout(() => {
+      successAlert.classList.add('vanish-alert');
+    }, 1300);
+  }
+}
+
+function capitalize(param) {
+  return param
+    .split('')
+    .map((letter, i) => (i === 0 ? letter.toUpperCase() : letter))
+    .join('');
+}
+
+function getCookie() {
+  return document.cookie.split('; ').some(element => element === 'firstTime=false');
 }
