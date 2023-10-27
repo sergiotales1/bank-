@@ -177,7 +177,7 @@ function retrieveAcc(username) {
 }
 
 function logout() {
-  // this is not working properly
+  // we save all infos and go back to index
   for (let i = 0; i < accounts.length; i++) {
     accounts[i] = JSON.parse(localStorage.getItem(accounts[i].username));
   }
@@ -288,10 +288,14 @@ function transfer(index) {
     // localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
     displayUI();
     displaySuccessAlert('transfer', receiverAcc.username, amount);
-    // reloading to avoid bugs request bug after transfer
-    setTimeout(() => {
+    if (!(+index === 0)) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1420); // note that we will wait until displaySuccessAlert do all the cycle
+    } else {
       window.location.reload();
-    }, 1425); // note that we will wait until displaySuccessAlert do all the cycle
+    }
+    // reloading to avoid bugs request bug after transfer
   } else {
     transferAmount.value = transferToInput.value = '';
     globalModal('app');
@@ -332,8 +336,10 @@ function displaySuccessAlert(type, to, value) {
       successAlert.classList.add('vanish-alert');
     }, 1300);
   } else if (type === 'login' && getCookie()) {
-    // if type === login and its the first time login into the account then we display the modal
-    successAlert.innerHTML = `Welcome ${currentAccount.username}!`;
+    // if type === login and its the first time login into the account then we display the
+    const firstName = currentAccount.owner.split(' ').splice(0, 1);
+    console.log(currentAccount.owner);
+    successAlert.innerHTML = `Welcome ${firstName}!`;
     document.cookie = 'firstTime=true';
     successAlert.classList.remove('vanish-alert');
     setTimeout(() => {
@@ -351,4 +357,43 @@ function capitalize(param) {
 
 function getCookie() {
   return document.cookie.split('; ').some(element => element === 'firstTime=false');
+}
+
+// login and sign up containers
+const loginContainer = document.querySelector('.container-login');
+const signUpContainer = document.querySelector('.container-signUp');
+const signUpName = document.getElementById('signUp-name');
+const signUpPw = document.getElementById('signUp-pw');
+
+function createAccount() {
+  loginContainer.classList.add('hidden');
+  signUpContainer.style.display = 'flex';
+  initializeLocalStorage();
+  console.log(accounts);
+}
+
+function confirmAccount() {
+  loginContainer.classList.remove('hidden');
+  signUpContainer.style.display = 'none';
+  // create the username
+  let signUpUsername = signUpName.value
+    .toLowerCase()
+    .split(' ')
+    .map(name => name[0])
+    .join('');
+
+  // we loop through accounts to see if we already have this username
+  let acc;
+  if (!accounts.some(acc => acc.username === signUpUsername)) {
+    acc = accounts[accounts.length] = {
+      owner: signUpName.value,
+      username: signUpUsername,
+      pin: +signUpPw.value,
+      index: accounts.length + 1,
+      requestedMoves: [],
+      movements: [50],
+    };
+  }
+  console.log(accounts);
+  updateLocalStorage(acc);
 }

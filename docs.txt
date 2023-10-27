@@ -13,6 +13,10 @@ sets all accounts.active to false and store them into localStorage.
 
 transfer(type) :
 this is the same function that is invoked once you click btnTransfer, and now the difference is that we also can do the whole process of transferring money into the modal button Transfer that shows to the user if some account has requested money to him.
+when transfer id is equals to 0 (only will happen if you make a transfer from the request modal) then we will reload the page immediately, otherwise we will have a delay to let the user read the success transfer alert
+
+confirmAcc():
+will add the new acc into the accounts array then update the localStorage, remember that now we are initializing the localStorage also into the createAccount button, in past we would just initialize if the user clicks on login.
 
 PROBLEMS: 
 
@@ -21,7 +25,6 @@ PROBLEMS:
 
 6- globalModal() is working but is ugly af, we need to refactor this code and clean repeated lines and transfer to inputs still need attention given that if any of the conditions to transfer is equals to false we are not telling the user what's happening just keeping the values there and don't doing anything
 *** SOLUTION 6 - now we have toggleModal(), this function accepts 3 params, first is the modal and second is the overlay, and if we send the third (which is not required to work) we automatically will send the user to index.html, this would be the case of the close modal that appears when we close an account.
-
 
 5- Error handling like alerts if theres no correspondent account and another things need to receive some attention, they are messing with the app flow
 *** SOLUTION 5.1 - we created the error modal to the login and to request to acc

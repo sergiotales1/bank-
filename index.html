@@ -22,12 +22,24 @@
       <label for="">Password:</label>
       <input type="text" id="login-password" maxlength="4" />
       <button type="button" class="login-button btn" onclick="login()">Login</button>
+      <button type="button" class="btn" onclick="createAccount()">Create New Account</button>
       <button type="button" class="btn" onclick="clearStorage()">CLEAR LOCAL STORAGE</button>
     </div>
     <div class="error-modal-login hidden">
       <p id="login-error-text">Error:</p>
       <button id="login-error-btn">X</button>
     </div>
+
+    <div class="container-signUp hidden">
+      <label for="">Enter your name:</label>
+      <input type="text" id="signUp-name" />
+      <label>(your username will be the first letter of each of your name)</label>
+
+      <label for="">Password: (max 4 numbers)</label>
+      <input type="text" id="signUp-pw" maxlength="4" />
+      <button type="button" class="btn signUp-button" onclick="confirmAccount()">Sign Up</button>
+    </div>
+
     <script src="./js/script.js"></script>
   </body>
 </html>

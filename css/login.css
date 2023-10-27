@@ -58,3 +58,12 @@ label {
 .hidden {
   display: none;
 }
+
+.container-signUp {
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 1px solid black;
+  max-width: 200px;
+}
