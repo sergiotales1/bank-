@@ -376,24 +376,29 @@ function confirmAccount() {
   loginContainer.classList.remove('hidden');
   signUpContainer.style.display = 'none';
   // create the username
-  let signUpUsername = signUpName.value
-    .toLowerCase()
-    .split(' ')
-    .map(name => name[0])
-    .join('');
+  if (signUpName.value && signUpPw.value) {
+    console.log(signUpName.value);
+    let signUpUsername = signUpName.value
 
-  // we loop through accounts to see if we already have this username
-  let acc;
-  if (!accounts.some(acc => acc.username === signUpUsername)) {
-    acc = accounts[accounts.length] = {
-      owner: signUpName.value,
-      username: signUpUsername,
-      pin: +signUpPw.value,
-      index: accounts.length + 1,
-      requestedMoves: [],
-      movements: [50],
-    };
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+
+    // we loop through accounts to see if we already have this username
+    let acc;
+    if (!accounts.some(acc => acc.username === signUpUsername)) {
+      acc = accounts[accounts.length] = {
+        owner: signUpName.value,
+        username: signUpUsername,
+        pin: +signUpPw.value,
+        index: accounts.length + 1,
+        requestedMoves: [],
+        movements: [50],
+      };
+    }
+    console.log(accounts);
+    updateLocalStorage(acc);
+  } else {
+    globalModal('login');
   }
-  console.log(accounts);
-  updateLocalStorage(acc);
 }
