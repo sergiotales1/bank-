@@ -41,7 +41,9 @@ body {
 .container-signUp {
   @include flex;
   flex-direction: column;
-  max-width: 300px;
+  box-shadow: $box-shadow;
+  background-color: #f1f0f3;
+  border-radius: $border-radius;
 
   .image-container {
     @include flex;
@@ -49,7 +51,7 @@ body {
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     background: #01baef;
-    padding: $login-padding;
+    padding: 1.3rem 1.5rem;
     color: white;
     width: 300px;
 
@@ -100,7 +102,7 @@ body {
       text-align: center;
       margin: 9px 0;
       font-size: 1rem;
-      width: 250px;
+      width: 200px;
       height: 40px;
       background-color: #d0e3da;
       color: #6e6e6e;
@@ -133,10 +135,10 @@ body {
 
     button {
       color: white;
-      font-size: 0.9rem;
+      font-size: 1rem;
       background-color: #1ac1f1;
       text-transform: uppercase;
-      padding: 0.4rem 0.7rem;
+      padding: 0.6rem 1rem;
       border-radius: $border-radius;
       cursor: pointer;
       margin-top: 1rem;

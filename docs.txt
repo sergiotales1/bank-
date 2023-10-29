@@ -20,6 +20,9 @@ will add the new acc into the accounts array then update the localStorage, remem
 
 PROBLEMS: 
 
+
+8- we are creating accounts with null value, need to view createAccount again
+
 7- request need some attention, atm we are just printing that someone is requesting money for someone with the username and amount solicited but we need to create more interactivity with a button saying transfer or don't
 *** SOLUTION 7 - we now recreate the entire modal so we are showing the user that is requesting, the amount and we are also giving to the user 2 options [transfer, ignore], if he ignores every time that the displayUI is called, if he chooses transfer then the requestedMove will be deleted and the money will be transferred.
 
