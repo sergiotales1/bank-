@@ -10,20 +10,21 @@
   <body>
     <div class="overlay hidden"></div>
     <div class="container-login">
-      <img
-        src="https://images.unsplash.com/photo-1662027067763-770376e710f5?auto=format&fit=crop&q=80&w=2062&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt=""
-        class="logo"
-        width="40px"
-      />
-      <label for="">Login:</label>
-      <input type="text" id="login-username" maxlength="4" />
+      <div class="image-container">
+        <img src="./assets/bank-logo.png" alt="" class="logo" width="40px" />
+        <p class="image-container-text">
+          <span class="welcome">Welcome</span>Log in to your account to continue
+        </p>
+      </div>
+      <div class="input-container">
+        <h1 class="input-container-title">Sign In</h1>
+        <input type="text" id="login-username" maxlength="4" placeholder="username" />
 
-      <label for="">Password:</label>
-      <input type="text" id="login-password" maxlength="4" />
-      <button type="button" class="login-button btn" onclick="login()">Login</button>
-      <button type="button" class="btn" onclick="createAccount()">Create New Account</button>
-      <button type="button" class="btn" onclick="clearStorage()">CLEAR LOCAL STORAGE</button>
+        <input type="text" id="login-password" maxlength="4" placeholder="password" />
+        <button type="button" class="login-button btn" onclick="login()">Login</button>
+        <button type="button" class="btn" onclick="createAccount()">Create New Account</button>
+        <button type="button" class="btn" onclick="clearStorage()">CLEAR LOCAL STORAGE</button>
+      </div>
     </div>
     <div class="error-modal-login hidden">
       <p id="login-error-text">Error:</p>
@@ -31,13 +32,26 @@
     </div>
 
     <div class="container-signUp hidden">
-      <label for="">Enter your name:</label>
-      <input type="text" id="signUp-name" />
-      <label>(your username will be the first letter of each of your name)</label>
+      <div class="image-container">
+        <img src="./assets/bank-logo.png" alt="" class="logo" width="40px" />
+        <p class="image-container-text">
+          <span class="welcome">Create Account</span>Enter your name and password to sign up.
+        </p>
+      </div>
+      <div class="input-container">
+        <h1 class="input-container-title">Sign Up</h1>
 
-      <label for="">Password: (max 4 numbers)</label>
-      <input type="text" id="signUp-pw" maxlength="4" />
-      <button type="button" class="btn signUp-button" onclick="confirmAccount()">Sign Up</button>
+        <input type="text" id="signUp-name" placeholder="Your Name" />
+        <label
+          >(your username will your first name's letter)<br /><span class="ex"
+            >Ex: Nico Robin - nr</span
+          ></label
+        >
+
+        <input type="text" id="signUp-pw" maxlength="4" placeholder="Password" />
+        <label for="">(max 4 numbers)</label>
+        <button type="button" class="btn signUp-button" onclick="confirmAccount()">Sign Up</button>
+      </div>
     </div>
 
     <script src="./js/script.js"></script>

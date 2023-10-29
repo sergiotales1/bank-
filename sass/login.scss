@@ -1,0 +1,234 @@
+@import 'normalize', 'reset', 'config';
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+}
+
+.error-modal-login {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  background-color: slateblue;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(1.9px);
+}
+
+.container-signUp {
+  @include flex;
+  flex-direction: column;
+  max-width: 300px;
+
+  .image-container {
+    @include flex;
+    flex-direction: column;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    background: #01baef;
+    padding: $login-padding;
+    color: white;
+    width: 300px;
+
+    span {
+      display: block;
+      text-align: center;
+      margin: 1rem 0;
+      color: #01708f;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    &-text {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  }
+
+  .input-container {
+    @include flex;
+    flex-direction: column;
+    position: relative;
+    padding: $login-padding;
+    width: 300px;
+    border-radius: $border-radius;
+    background-color: #f1f0f3;
+    top: -15px;
+
+    label {
+      text-align: center;
+      font-size: 0.9rem;
+      margin: 0.4rem 0;
+
+      span {
+        margin-top: 0.5rem;
+        display: block;
+        font-size: 0.7rem;
+      }
+
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+
+    input {
+      padding: 0.4rem;
+      border-radius: $border-radius;
+      text-align: center;
+      margin: 9px 0;
+      font-size: 1rem;
+      width: 250px;
+      height: 40px;
+      background-color: #d0e3da;
+      color: #6e6e6e;
+      border: none;
+      box-shadow: 2px 1px 4px rgba($color: #000000, $alpha: 0.3);
+
+      &:nth-of-type(2) {
+        width: 120px;
+        font-size: 1.3rem;
+
+        &::placeholder {
+          font-size: 1.1rem;
+        }
+      }
+
+      &::placeholder {
+        text-transform: capitalize;
+        font-size: 1.2rem;
+        color: rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    &-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #004a60;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    button {
+      color: white;
+      font-size: 0.9rem;
+      background-color: #1ac1f1;
+      text-transform: uppercase;
+      padding: 0.4rem 0.7rem;
+      border-radius: $border-radius;
+      cursor: pointer;
+      margin-top: 1rem;
+      box-shadow: $box-shadow;
+    }
+  }
+}
+
+.container-login {
+  @include flex;
+  flex-direction: column;
+  border-radius: $border-radius;
+  background-color: #f1f0f3;
+  box-shadow: $box-shadow;
+
+  .image-container {
+    @include flex;
+    flex-direction: column;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    background: #01baef;
+    padding: $login-padding;
+    color: white;
+    width: 300px;
+
+    span {
+      display: block;
+      text-align: center;
+      margin: 1rem 0;
+      color: #01708f;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    &-text {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  }
+
+  .input-container {
+    @include flex;
+    flex-direction: column;
+    position: relative;
+    padding: $login-padding;
+    width: 300px;
+    border-radius: $border-radius;
+    background-color: #f1f0f3;
+    top: -15px;
+
+    input {
+      padding: 0.5rem;
+      border-radius: $border-radius;
+      text-align: center;
+      margin: 9px 0;
+      height: 40px;
+      font-size: 1.2rem;
+      width: 120px;
+      background-color: #d0e3da;
+      color: #6e6e6e;
+      border: none;
+      box-shadow: 2px 1px 4px rgba($color: #000000, $alpha: 0.3);
+
+      &::placeholder {
+        text-transform: capitalize;
+        font-size: 1.1rem;
+        color: rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    &-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #004a60;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    button {
+      color: white;
+      font-size: 0.9rem;
+      background-color: #1ac1f1;
+      text-transform: uppercase;
+      padding: 0.4rem 0.7rem;
+      border-radius: $border-radius;
+      cursor: pointer;
+      margin-top: 1rem;
+      box-shadow: $box-shadow;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
