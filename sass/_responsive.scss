@@ -1,0 +1,151 @@
+@include responsive-md {
+  .container-login {
+    .media-container {
+      display: flex;
+
+      .image-container {
+        width: 400px;
+        height: 500px;
+        border-radius: $border-radius;
+
+        img {
+          width: 70px;
+          margin-left: -25px;
+        }
+
+        .welcome {
+          font-size: 2.4rem;
+          margin: 1.6rem 0;
+        }
+
+        &-text {
+          font-size: 1.4rem;
+          margin-left: -25px;
+        }
+      }
+      .input-container {
+        margin-top: 0;
+        // left: -25px;
+        margin-left: -25px;
+        height: 500px;
+        width: 340px;
+        border-radius: $border-radius;
+
+        &-title {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        input {
+          font-size: 1.7rem;
+          width: 250px;
+          height: 50px;
+
+          &::placeholder {
+            font-size: 1.3rem;
+          }
+        }
+
+        .btn:first-of-type {
+          margin-top: 2.4rem;
+        }
+
+        .btn {
+          padding: 0.7rem;
+          font-size: 1rem;
+          font-weight: bold;
+        }
+
+        .btn:last-of-type {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .clear-storage {
+    position: relative;
+    margin-top: 115px;
+    margin-left: -25px;
+    bottom: -30px;
+    padding: 0.7rem;
+    font-size: 1rem;
+    color: #01708f;
+    font-weight: bold;
+    border-radius: $border-radius;
+    background-color: white;
+  }
+
+  .container-signUp {
+    .media-container {
+      display: flex;
+
+      .image-container {
+        width: 400px;
+        height: 500px;
+        border-radius: $border-radius;
+        padding: 3.1rem;
+
+        img {
+          width: 90px;
+          margin-left: -25px;
+        }
+
+        .welcome {
+          font-size: 2.2rem;
+          margin: 1.6rem 0;
+        }
+
+        &-text {
+          font-size: 1.3rem;
+          margin-left: -25px;
+          letter-spacing: 1px;
+          line-height: 29px;
+        }
+      }
+      .input-container {
+        margin-top: 0;
+        // left: -25px;
+        margin-left: -25px;
+        height: 500px;
+        width: 340px;
+        border-radius: $border-radius;
+
+        &-title {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        label {
+          font-size: 1rem;
+        }
+
+        .ex {
+          font-size: 0.9rem;
+          margin-top: 1.2rem;
+        }
+
+        input {
+          font-size: 1.3rem;
+          width: 250px;
+          height: 50px;
+          margin-top: 1.3rem;
+
+          &::placeholder {
+            font-size: 1.3rem;
+          }
+        }
+
+        .btn:first-of-type {
+          margin-top: 1.8rem;
+        }
+
+        .btn {
+          padding: 0.7rem;
+          font-size: 1rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

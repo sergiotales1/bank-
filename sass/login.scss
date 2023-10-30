@@ -1,4 +1,4 @@
-@import 'normalize', 'reset', 'config';
+@import 'normalize', 'reset', 'config', 'responsive';
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
@@ -13,6 +13,7 @@ body {
   align-items: center;
   font-family: 'Montserrat', sans-serif;
   position: relative;
+  background-color: #f1f0f3;
 }
 
 .error-modal-login {
@@ -77,8 +78,8 @@ body {
     padding: $login-padding;
     width: 300px;
     border-radius: $border-radius;
-    background-color: #f1f0f3;
-    top: -15px;
+    background-color: #fff;
+    margin-top: -15px;
 
     label {
       text-align: center;
@@ -153,6 +154,7 @@ body {
   border-radius: $border-radius;
   background-color: #f1f0f3;
   box-shadow: $box-shadow;
+  width: auto;
 
   .image-container {
     @include flex;
@@ -186,8 +188,8 @@ body {
     padding: $login-padding;
     width: 300px;
     border-radius: $border-radius;
-    background-color: #f1f0f3;
-    top: -15px;
+    background-color: #fff;
+    margin-top: -15px;
 
     input {
       padding: 0.5rem;
@@ -233,4 +235,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 767px) {
+  .clear-storage {
+    display: none;
+  }
 }

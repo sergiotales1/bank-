@@ -379,7 +379,7 @@ function confirmAccount() {
   if (signUpName.value && signUpPw.value) {
     console.log(signUpName.value);
     let signUpUsername = signUpName.value
-
+      .toLowerCase()
       .split(' ')
       .map(name => name[0])
       .join('');
@@ -397,6 +397,7 @@ function confirmAccount() {
       };
     }
     console.log(accounts);
+
     updateLocalStorage(acc);
   } else {
     globalModal('login');

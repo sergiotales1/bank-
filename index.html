@@ -10,20 +10,25 @@
   <body>
     <div class="overlay hidden"></div>
     <div class="container-login">
-      <div class="image-container">
-        <img src="./assets/bank-logo.png" alt="" class="logo" width="40px" />
-        <p class="image-container-text">
-          <span class="welcome">Welcome</span>Log in to your account to continue
-        </p>
-      </div>
-      <div class="input-container">
-        <h1 class="input-container-title">Sign In</h1>
-        <input type="text" id="login-username" maxlength="4" placeholder="username" />
+      <div class="media-container">
+        <div class="image-container">
+          <img src="./assets/bank-logo.png" alt="" class="logo" width="40px" />
+          <p class="image-container-text">
+            <span class="welcome">Welcome</span>Log in to your account to continue
+          </p>
+          <button type="button" class="btn clear-storage" onclick="clearStorage()">
+            CLEAR LOCAL STORAGE
+          </button>
+        </div>
+        <div class="input-container">
+          <h1 class="input-container-title">Sign In</h1>
+          <input type="text" id="login-username" maxlength="4" placeholder="username" />
 
-        <input type="text" id="login-password" maxlength="4" placeholder="password" />
-        <button type="button" class="login-button btn" onclick="login()">Login</button>
-        <button type="button" class="btn" onclick="createAccount()">Create New Account</button>
-        <button type="button" class="btn" onclick="clearStorage()">CLEAR LOCAL STORAGE</button>
+          <input type="text" id="login-password" maxlength="4" placeholder="password" />
+          <button type="button" class="login-button btn" onclick="login()">Login</button>
+          <button type="button" class="btn" onclick="createAccount()">Create New Account</button>
+          <button type="button" class="btn" onclick="clearStorage()">CLEAR LOCAL STORAGE</button>
+        </div>
       </div>
     </div>
     <div class="error-modal-login hidden">
@@ -32,25 +37,29 @@
     </div>
 
     <div class="container-signUp hidden">
-      <div class="image-container">
-        <img src="./assets/bank-logo.png" alt="" class="logo" width="40px" />
-        <p class="image-container-text">
-          <span class="welcome">Create Account</span>Enter your name and password to sign up.
-        </p>
-      </div>
-      <div class="input-container">
-        <h1 class="input-container-title">Sign Up</h1>
+      <div class="media-container">
+        <div class="image-container">
+          <img src="./assets/bank-logo.png" alt="" class="logo" width="40px" />
+          <p class="image-container-text">
+            <span class="welcome">Create Account</span>Enter your name and password to sign up.
+          </p>
+        </div>
+        <div class="input-container">
+          <h1 class="input-container-title">Sign Up</h1>
 
-        <input type="text" id="signUp-name" placeholder="Your Name" />
-        <label
-          >(your username is automatically each first letter of your name)<br /><span class="ex"
-            >Ex: Nico Robin - nr</span
-          ></label
-        >
+          <input type="text" id="signUp-name" placeholder="Your Name" />
+          <label
+            >(your username is automatically each first letter of your name)<br /><span class="ex"
+              >Ex: Nico Robin - nr</span
+            ></label
+          >
 
-        <input type="text" id="signUp-pw" maxlength="4" placeholder="Password" />
-        <label for="">(max 4 numbers)</label>
-        <button type="button" class="btn signUp-button" onclick="confirmAccount()">Sign Up</button>
+          <input type="text" id="signUp-pw" maxlength="4" placeholder="Password" />
+          <label for="">(max 4 numbers)</label>
+          <button type="button" class="btn signUp-button" onclick="confirmAccount()">
+            Sign Up
+          </button>
+        </div>
       </div>
     </div>
 

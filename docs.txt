@@ -19,6 +19,9 @@ confirmAcc():
 will add the new acc into the accounts array then update the localStorage, remember that now we are initializing the localStorage also into the createAccount button, in past we would just initialize if the user clicks on login.
 
 PROBLEMS: 
+
+10- we need to show some success modal or alert once an account is successfully created!
+
 9- dynamically messages could be sent to globalModal and displayed into UI.
 
 8- we are creating accounts with null value, need to view createAccount again
