@@ -24,6 +24,7 @@ PROBLEMS:
 *** SOLUTION 10 - we now have this but the responsive on mobile should be fixed!
 
 9- dynamically messages could be sent to globalModal and displayed into UI.
+*** SOLUTION 9 - DONE, now we send to globalModal() the modal that we are using and the text that will be displayed.
 
 8- we are creating accounts with null value, need to view createAccount again
 *** SOLUTION 8 - Solved with if else!
