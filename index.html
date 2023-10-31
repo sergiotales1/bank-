@@ -9,6 +9,7 @@
   </head>
   <body>
     <div class="overlay hidden"></div>
+    <div class="createdAccModal vanish-alert"></div>
     <div class="container-login">
       <div class="media-container">
         <div class="image-container">
@@ -24,7 +25,13 @@
           <h1 class="input-container-title">Sign In</h1>
           <input type="text" id="login-username" maxlength="4" placeholder="username" />
 
-          <input type="text" id="login-password" maxlength="4" placeholder="password" />
+          <input
+            type="number"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            id="login-password"
+            maxlength="4"
+            placeholder="password"
+          />
           <button type="button" class="login-button btn" onclick="login()">Login</button>
           <button type="button" class="btn" onclick="createAccount()">Create New Account</button>
           <button type="button" class="btn" onclick="clearStorage()">CLEAR LOCAL STORAGE</button>
@@ -54,7 +61,13 @@
             ></label
           >
 
-          <input type="text" id="signUp-pw" maxlength="4" placeholder="Password" />
+          <input
+            type="number"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            id="signUp-pw"
+            maxlength="4"
+            placeholder="Password"
+          />
           <label for="">(max 4 numbers)</label>
           <button type="button" class="btn signUp-button" onclick="confirmAccount()">
             Sign Up

@@ -814,5 +814,24 @@ body {
     display: none;
   }
 }
+.createdAccModal {
+  background-color: red;
+  position: fixed;
+  width: 300px;
+  height: 100px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgreen;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  transition: 0.4s;
+}
+
+.vanish-alert {
+  right: -500px;
+}
 
 /*# sourceMappingURL=login.css.map */

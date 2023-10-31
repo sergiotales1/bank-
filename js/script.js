@@ -345,6 +345,13 @@ function displaySuccessAlert(type, to, value) {
     setTimeout(() => {
       successAlert.classList.add('vanish-alert');
     }, 1300);
+  } else if (type === 'create') {
+    const successCreate = document.querySelector('.createdAccModal');
+    successCreate.innerHTML = `Account created!`;
+    successCreate.classList.remove('vanish-alert');
+    setTimeout(() => {
+      successCreate.classList.add('vanish-alert');
+    }, 1300);
   }
 }
 
@@ -366,6 +373,7 @@ const signUpName = document.getElementById('signUp-name');
 const signUpPw = document.getElementById('signUp-pw');
 
 function createAccount() {
+  // the functionality this is just redirect the user to the sign up container
   loginContainer.classList.add('hidden');
   signUpContainer.style.display = 'flex';
   initializeLocalStorage();
@@ -395,10 +403,11 @@ function confirmAccount() {
         requestedMoves: [],
         movements: [50],
       };
+      displaySuccessAlert('create');
+      updateLocalStorage(acc);
+    } else {
+      globalModal('login');
     }
-    console.log(accounts);
-
-    updateLocalStorage(acc);
   } else {
     globalModal('login');
   }
