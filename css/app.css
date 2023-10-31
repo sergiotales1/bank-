@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 html,
 body,
 div,
@@ -460,8 +461,149 @@ template {
   display: none;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  div.error-modal-login,
+  div.app-error-modal {
+    width: 400px;
+    height: 180px;
+    font-size: 1.5rem;
+  }
+  button#login-error-btn,
+  button#app-error-btn {
+    right: 590px;
+    top: 300px;
+  }
+  div.overlay {
+    backdrop-filter: blur(3px);
+  }
+  .container-login .media-container {
+    display: flex;
+  }
+  .container-login .media-container .image-container {
+    width: 400px;
+    height: 500px;
+    border-radius: 18px;
+  }
+  .container-login .media-container .image-container img {
+    width: 70px;
+    margin-left: -25px;
+  }
+  .container-login .media-container .image-container .welcome {
+    font-size: 2.4rem;
+    margin: 1.6rem 0;
+  }
+  .container-login .media-container .image-container-text {
+    font-size: 1.4rem;
+    margin-left: -25px;
+  }
+  .container-login .media-container .input-container {
+    margin-top: 0;
+    margin-left: -25px;
+    height: 500px;
+    width: 340px;
+    border-radius: 18px;
+  }
+  .container-login .media-container .input-container-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .container-login .media-container .input-container input {
+    font-size: 1.7rem;
+    width: 250px;
+    height: 50px;
+  }
+  .container-login .media-container .input-container input::placeholder {
+    font-size: 1.3rem;
+  }
+  .container-login .media-container .input-container .btn:first-of-type {
+    margin-top: 2.4rem;
+  }
+  .container-login .media-container .input-container .btn {
+    padding: 0.7rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .container-login .media-container .input-container .btn:last-of-type {
+    display: none;
+  }
+  .clear-storage {
+    position: relative;
+    margin-top: 115px;
+    margin-left: -25px;
+    bottom: -30px;
+    padding: 0.7rem;
+    font-size: 1rem;
+    color: #01708f;
+    font-weight: bold;
+    border-radius: 18px;
+    background-color: white;
+  }
+  .container-signUp .media-container {
+    display: flex;
+  }
+  .container-signUp .media-container .image-container {
+    width: 400px;
+    height: 500px;
+    border-radius: 18px;
+    padding: 3.1rem;
+  }
+  .container-signUp .media-container .image-container img {
+    width: 90px;
+    margin-left: -25px;
+  }
+  .container-signUp .media-container .image-container .welcome {
+    font-size: 2.2rem;
+    margin: 1.6rem 0;
+  }
+  .container-signUp .media-container .image-container-text {
+    font-size: 1.3rem;
+    margin-left: -25px;
+    letter-spacing: 1px;
+    line-height: 29px;
+  }
+  .container-signUp .media-container .input-container {
+    margin-top: 0;
+    margin-left: -25px;
+    height: 500px;
+    width: 340px;
+    border-radius: 18px;
+  }
+  .container-signUp .media-container .input-container-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .container-signUp .media-container .input-container label {
+    font-size: 1rem;
+  }
+  .container-signUp .media-container .input-container .ex {
+    font-size: 0.9rem;
+    margin-top: 1.2rem;
+  }
+  .container-signUp .media-container .input-container input {
+    font-size: 1.3rem;
+    width: 250px;
+    height: 50px;
+    margin-top: 1.3rem;
+  }
+  .container-signUp .media-container .input-container input::placeholder {
+    font-size: 1.3rem;
+  }
+  .container-signUp .media-container .input-container .btn:first-of-type {
+    margin-top: 1.8rem;
+  }
+  .container-signUp .media-container .input-container .btn {
+    padding: 0.7rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
 body {
   display: flex;
+  font-family: "Montserrat", sans-serif;
   height: 100vh;
   align-items: center;
   justify-content: center;
@@ -516,25 +658,28 @@ button {
   border: 4px solid blue;
 }
 
-.closeAcc-modal {
-  position: fixed;
-  background-color: brown;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .app-error-modal {
+  text-align: center;
   position: fixed;
-  width: 200px;
+  width: 290px;
   height: 200px;
-  background-color: slateblue;
+  padding: 2.5rem 1.2rem;
+  border-radius: 18px;
+  background-color: #fffffa;
   z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-size: 1.3rem;
+  line-height: 23px;
+  color: darkgray;
+}
+
+#app-error-btn {
+  position: fixed;
+  right: 27px;
+  top: 230px;
 }
 
 .overlay-app {

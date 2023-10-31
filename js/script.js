@@ -59,7 +59,10 @@ function login() {
     window.location.href = 'app.html';
   } else {
     // block in case of password or username inexistent
-    globalModal('login');
+    globalModal(
+      'login',
+      "We couldn't find this combination of username and password. <br>Please try again!"
+    );
   }
 }
 
@@ -124,7 +127,6 @@ function displayUI() {
   btnRequest.addEventListener('click', () => {
     // test if exists the requested acc into the db
     if (accounts.some(acc => acc.username === requestToInput.value)) {
-      console.log('a');
       const requestedAcc = retrieveAcc(requestToInput.value);
       const amount = +requestAmount.value;
       if (
@@ -141,7 +143,10 @@ function displayUI() {
       } // we need a block to when some condition don't match
     } else {
       // shows the modal
-      globalModal('app');
+      globalModal(
+        'app',
+        "We don't have this account into our system or the target account doesn't have enough balance."
+      );
       requestToInput.value = requestAmount.value = '';
     }
   });
@@ -157,8 +162,10 @@ function displayUI() {
       // we remove the specified index from accounts array
       accounts.splice(currentAccount.index, 1);
       localStorage.removeItem(currentAccount.username);
-      globalModal('close');
+      globalModal('close', 'Account closed! click anywhere to be redirect to login page.');
       // document.querySelector('.closeAcc-modal').classList.toggle('hidden');
+    } else {
+      globalModal('close', "Username or password invalid. We could't close this account.");
     }
   });
 }
@@ -206,7 +213,7 @@ function setAccountsArray(activeAllFalse = true) {
   });
 }
 
-const globalModal = function (modal) {
+const globalModal = function (modal, text) {
   // LOGIN ERROR MODAL
   const errorLogin = document.querySelector('.error-modal-login');
   const overlay = document.querySelector('.overlay');
@@ -220,7 +227,7 @@ const globalModal = function (modal) {
   if (modal === 'login') {
     // tests what is the reason of the error NEED TO WORK ON!!!
     // first error = when we don't find an correspondent account
-    errorText.textContent = "Error: We couldn't find that match of account. Please check again!";
+    errorText.innerHTML = text;
     // show the error modal
     errorLogin.classList.remove('hidden');
     overlay.classList.remove('hidden');
@@ -237,15 +244,18 @@ const globalModal = function (modal) {
     // APP ERROR MODAL
 
     // first error = when we don't find an correspondent account
-    errorAppText.textContent =
-      "Error: We couldn't find that match of account to request. Please check again!";
+    errorAppText.innerHTML = text;
     // show the error modal
     toggleModal(errorApp, overlayApp);
   } else if (modal === 'close') {
     // first error = when we don't find an correspondent account
-    errorAppText.textContent = 'ACCOUNT CLOSED PRESS THE BUTTON TO GO BACK TO LOGIN';
+    errorAppText.innerHTML = text;
     //toggle off the modal and send to index.html
-    toggleModal(errorApp, overlayApp, 'close');
+    if (text === 'Account closed! click anywhere to be redirect to login page.') {
+      toggleModal(errorApp, overlayApp, 'close');
+    } else {
+      toggleModal(errorApp, overlayApp);
+    }
   } else if (modal === 'requests') {
     // APP ERROR MODAL
 
@@ -298,7 +308,10 @@ function transfer(index) {
     // reloading to avoid bugs request bug after transfer
   } else {
     transferAmount.value = transferToInput.value = '';
-    globalModal('app');
+    globalModal(
+      'app',
+      "We don't have this account into our system or you don't have enough value to proceed."
+    );
   }
 }
 
@@ -383,9 +396,9 @@ function createAccount() {
 function confirmAccount() {
   loginContainer.classList.remove('hidden');
   signUpContainer.style.display = 'none';
+  let warning;
   // create the username
   if (signUpName.value && signUpPw.value) {
-    console.log(signUpName.value);
     let signUpUsername = signUpName.value
       .toLowerCase()
       .split(' ')
@@ -406,9 +419,11 @@ function confirmAccount() {
       displaySuccessAlert('create');
       updateLocalStorage(acc);
     } else {
-      globalModal('login');
+      warning = 'We already have this username into our app! <br>Try another one.';
+      globalModal('login', warning);
     }
   } else {
-    globalModal('login');
+    warning = 'These values are invalid! <br>Please try again.';
+    globalModal('login', warning);
   }
 }

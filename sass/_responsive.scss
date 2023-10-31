@@ -1,4 +1,21 @@
 @include responsive-md {
+  div.error-modal-login,
+  div.app-error-modal {
+    width: 400px;
+    height: 180px;
+    font-size: 1.5rem;
+  }
+
+  button#login-error-btn,
+  button#app-error-btn {
+    right: 590px;
+    top: 300px;
+  }
+
+  div.overlay {
+    backdrop-filter: blur(3px);
+  }
+
   .container-login {
     .media-container {
       display: flex;

@@ -1,11 +1,5 @@
 @import 'normalize', 'reset', 'config', 'responsive';
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-* {
-  box-sizing: border-box;
-}
-
 body {
   height: 100vh;
   display: flex;
@@ -17,15 +11,27 @@ body {
 }
 
 .error-modal-login {
+  text-align: center;
   position: fixed;
-  width: 200px;
+  width: 290px;
   height: 200px;
-  background-color: slateblue;
+  padding: 2.5rem 1.2rem;
+  border-radius: $border-radius;
+  background-color: #fffffa;
   z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-size: 1.3rem;
+  line-height: 23px;
+  color: darkgray;
+}
+
+#login-error-btn {
+  position: fixed;
+  right: 27px;
+  top: 230px;
 }
 
 .overlay {
