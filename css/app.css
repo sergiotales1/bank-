@@ -465,6 +465,18 @@ template {
   box-sizing: border-box;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
 @media screen and (min-width: 768px) {
   div.error-modal-login,
   div.app-error-modal {
@@ -574,10 +586,11 @@ template {
   }
   .container-signUp .media-container .input-container-title {
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   .container-signUp .media-container .input-container label {
     font-size: 1rem;
+    margin: 0;
   }
   .container-signUp .media-container .input-container .ex {
     font-size: 0.9rem;

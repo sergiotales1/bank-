@@ -23,3 +23,17 @@ $box-shadow: 4px 2px 8px
     @content;
   }
 }
+
+// input type number arrows remove
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}

@@ -232,6 +232,9 @@ const globalModal = function (modal, text) {
     errorLogin.classList.remove('hidden');
     overlay.classList.remove('hidden');
     const removeHidden = function () {
+      if (text[0] === 'A') {
+        window.location.href = 'index.html';
+      }
       // pick the overlay and made them disappear
       overlay.classList.add('hidden');
       errorLogin.classList.add('hidden');
@@ -326,7 +329,6 @@ function toggleModal(errorApp, overlayApp, closeModal) {
     errorApp.classList.add('hidden');
     if (closeModal) window.location.href = 'index.html';
   };
-
   if (closeModal) {
     document.getElementById('app-error-btn').addEventListener('click', () => {
       removeHidden(closeModal);
@@ -358,13 +360,6 @@ function displaySuccessAlert(type, to, value) {
     setTimeout(() => {
       successAlert.classList.add('vanish-alert');
     }, 1300);
-  } else if (type === 'create') {
-    const successCreate = document.querySelector('.createdAccModal');
-    successCreate.innerHTML = `Account created!`;
-    successCreate.classList.remove('vanish-alert');
-    setTimeout(() => {
-      successCreate.classList.add('vanish-alert');
-    }, 1300);
   }
 }
 
@@ -394,8 +389,8 @@ function createAccount() {
 }
 
 function confirmAccount() {
-  loginContainer.classList.remove('hidden');
-  signUpContainer.style.display = 'none';
+  // loginContainer.classList.remove('hidden');
+  // signUpContainer.style.display = 'none';
   let warning;
   // create the username
   if (signUpName.value && signUpPw.value) {
@@ -416,8 +411,9 @@ function confirmAccount() {
         requestedMoves: [],
         movements: [50],
       };
-      displaySuccessAlert('create');
       updateLocalStorage(acc);
+      warning = `Account created <br> username: ${acc.username} <br> password: ${acc.pin}<br><br>Click anywhere to go to login page.`;
+      globalModal('login', warning);
     } else {
       warning = 'We already have this username into our app! <br>Try another one.';
       globalModal('login', warning);
