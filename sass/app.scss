@@ -1,6 +1,7 @@
 @import 'reset', 'normalize', 'config', 'responsive';
 
 body {
+  background-color: #f1f0f3;
   display: flex;
   font-family: 'Montserrat', sans-serif;
   height: 100vh;
@@ -8,53 +9,93 @@ body {
   justify-content: center;
 }
 
-.balance p,
-.balance label {
-  font-size: 1.5rem;
+button {
+  border: 1px solid;
+}
+
+input {
+  border: 1px solid;
 }
 
 .container-app {
   width: 500px;
+  position: fixed;
+  top: 800px;
 }
+.container {
+  background-color: #fff;
+  width: 315px;
 
-.balance {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 1rem;
-}
+  .welcome-title {
+    text-align: center;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.movements {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 1rem;
-}
+  &-head {
+    width: 300px;
+    margin: 0 auto;
 
-.transfer {
-  margin: 1rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border: 4px solid red;
-}
+    .current-balance {
+      display: flex;
+      justify-content: space-between;
+    }
 
-input,
-button {
-  border: 1px solid black;
-  width: 70px;
-  margin: 0.2rem;
-}
+    .logout {
+      display: flex;
+      justify-content: space-between;
+    }
 
-.request {
-  margin: 1rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border: 4px solid green;
-}
+    .transfer-request {
+      display: flex;
+      flex-direction: column;
+      padding: 0.6rem;
+      gap: 1rem;
+    }
 
-.close {
-  margin: 1rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border: 4px solid blue;
+    .transfer,
+    .request,
+    .close {
+      border-radius: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      input {
+        width: 70px;
+      }
+      .inputs-label {
+        margin: 1rem 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 0 1rem;
+      }
+    }
+
+    .request {
+      background-color: #1fd953;
+    }
+
+    .transfer {
+      background-color: #745efa;
+    }
+
+    .movements {
+      overflow: scroll;
+      overflow-x: hidden;
+      height: 100px;
+      background-color: #d1d1d1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .close {
+      background-color: #ea0505;
+    }
+  }
 }
 
 .app-error-modal {
@@ -78,7 +119,7 @@ button {
 #app-error-btn {
   position: fixed;
   right: 27px;
-  top: 230px;
+  top: 210px;
 }
 
 .overlay-app {
@@ -91,12 +132,6 @@ button {
   height: 100vh;
   backdrop-filter: blur(1.9px);
 }
-
-.hidden {
-  display: none;
-}
-
-/* request / transfer done successfully */
 
 .success-alert {
   position: fixed;
@@ -111,6 +146,10 @@ button {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   font-size: 20px;
   transition: 0.4s;
+}
+
+.hidden {
+  display: none;
 }
 
 .vanish-alert {

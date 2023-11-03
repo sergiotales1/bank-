@@ -6,58 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/app.css" />
     <title>App</title>
+    <script src="https://kit.fontawesome.com/d28f0790a9.js" crossorigin="anonymous"></script>
   </head>
   <body onload="displayUI()">
+    <div class="container">
+      <h1 class="welcome-title">
+        <img src="/assets/bank-logo.png" alt="" width="35px" />User Account
+      </h1>
+
+      <div class="container-head">
+        <div class="current-balance">
+          <p>Current Balance</p>
+          <label class="label-balance">50$</label>
+        </div>
+        <div class="logout">
+          <div></div>
+          <button onclick="logout()">Logout</button>
+        </div>
+        <div class="transfer-request">
+          <div class="transfer">
+            <h2>Transfer Money</h2>
+            <div class="inputs-label">
+              <label>To:</label>
+              <label>Amount:</label>
+              <input type="text" id="transfer-to-input" placeholder="username" />
+              <input type="text" id="transfer-amount-input" placeholder="amount" />
+            </div>
+            <button class="transfer-btn btn"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+
+          <div class="request">
+            <h2>Request Money</h2>
+            <div class="inputs-label">
+              <label>To:</label>
+              <label>Amount:</label>
+              <input type="text" id="request-to-input" placeholder="username" />
+              <input type="text" id="request-amount-input" placeholder="amount" />
+            </div>
+            <button class="request-btn btn"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+          <div class="movements">
+            <!-- 2 deposit 300$ 1 withdrawal -200$-->
+            <div class="movement-index"></div>
+            <div class="movement-value"></div>
+            <div class="movement-index"></div>
+            <div class="movement-value"></div>
+          </div>
+          <div class="close">
+            <label for="">Confirm username: </label>
+            <input type="text" id="close-username-input" />
+            <label>Pin:</label>
+            <input type="text" id="close-pin-input" />
+            <button class="close-btn btn">close account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WALL -->
     <div class="success-alert vanish-alert"></div>
     <div class="overlay-app hidden"></div>
     <div class="app-error-modal hidden">
       <p id="app-error-text">Error:</p>
       <button id="app-error-btn">X</button>
     </div>
-    <div class="container-app">
-      <!-- Balance -->
-      <div class="balance">
-        <p class="current-balance">Current balance</p>
-        <label for="" class="label-balance">23000$</label>
-      </div>
-
-      <!-- movements -->
-      <div class="movements">
-        <!-- 2 deposit 300$ 1 withdrawal -200$-->
-        <div class="movement-index"></div>
-        <div class="movement-value"></div>
-        <div class="movement-index"></div>
-        <div class="movement-value"></div>
-      </div>
-
-      <!-- transfer -->
-      <div class="transfer">
-        <label for="">Transfer to:</label>
-        <input type="text" id="transfer-to-input" />
-        <label>Amount:</label>
-        <input type="text" id="transfer-amount-input" />
-        <button class="transfer-btn btn">Transfer</button>
-      </div>
-
-      <!-- request transfer to another acc -->
-      <div class="request">
-        <label for="">Request to:</label>
-        <input type="text" id="request-to-input" />
-        <label>Amount:</label>
-        <input type="text" id="request-amount-input" />
-        <button class="request-btn btn">Request</button>
-      </div>
-
-      <!-- close account -->
-      <div class="close">
-        <label for="">Confirm username: </label>
-        <input type="text" id="close-username-input" />
-        <label>Pin:</label>
-        <input type="text" id="close-pin-input" />
-        <button class="close-btn btn">close account</button>
-      </div>
-    </div>
-    <button onclick="logout()">LOGOUT</button>
 
     <script src="./js/script.js"></script>
   </body>
