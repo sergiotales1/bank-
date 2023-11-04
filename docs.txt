@@ -20,6 +20,8 @@ will add the new acc into the accounts array then update the localStorage, remem
 
 PROBLEMS: 
 
+11- we need to change the name of user account title to the owner of current account and start the desktop version!
+
 10- we need to show some success modal or alert once an account is successfully created!
 *** SOLUTION 10 - we now have this but the responsive on mobile should be fixed!
 

@@ -618,16 +618,11 @@ body {
   background-color: #f1f0f3;
   display: flex;
   font-family: "Montserrat", sans-serif;
-  height: 100vh;
   align-items: center;
   justify-content: center;
 }
 
 button {
-  border: 1px solid;
-}
-
-input {
   border: 1px solid;
 }
 
@@ -641,16 +636,16 @@ input {
   background-color: #fff;
   width: 315px;
 }
-.container .welcome-title {
+.container-head {
+  width: 300px;
+  margin: 0 auto;
+}
+.container-head .welcome-title {
   text-align: center;
   font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.container-head {
-  width: 300px;
-  margin: 0 auto;
 }
 .container-head .current-balance {
   display: flex;
@@ -660,15 +655,16 @@ input {
   display: flex;
   justify-content: space-between;
 }
-.container-head .transfer-request {
+.container-app-body {
   display: flex;
   flex-direction: column;
   padding: 0.6rem;
   gap: 1rem;
+  width: 300px;
+  margin: 0 auto;
 }
-.container-head .transfer,
-.container-head .request,
-.container-head .close {
+.container .transfer {
+  background-color: #745efa;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
@@ -676,40 +672,160 @@ input {
   flex-direction: column;
   text-align: center;
 }
-.container-head .transfer input,
-.container-head .request input,
-.container-head .close input {
-  width: 70px;
+.container .transfer h2 {
+  font-size: 1.3rem;
+  margin-top: 0.8rem;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
-.container-head .transfer .inputs-label,
-.container-head .request .inputs-label,
-.container-head .close .inputs-label {
-  margin: 1rem 0;
+.container .transfer input {
+  width: 70px;
+  border-radius: 1rem;
+  background-color: #fffefe;
+  padding: 0.4rem;
+  text-align: center;
+  border: none;
+}
+.container .transfer input::placeholder {
+  font-size: 0.9rem;
+  color: rgb(181, 178, 178);
+  text-transform: uppercase;
+  text-align: center;
+}
+.container .transfer .inputs-label {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0 1rem;
 }
-.container-head .request {
+.container .transfer .inputs-label label {
+  text-transform: uppercase;
+  margin: 0.7rem 0 0.5rem 0;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.container .transfer button {
+  font-size: 1.4rem;
+  margin: 0.8rem 0 0.2rem 0;
+  border: none;
+}
+.container .request {
   background-color: #1fd953;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
-.container-head .transfer {
-  background-color: #745efa;
+.container .request h2 {
+  font-size: 1.3rem;
+  margin-top: 0.8rem;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
-.container-head .movements {
-  overflow: scroll;
-  overflow-x: hidden;
-  height: 100px;
-  background-color: #d1d1d1;
+.container .request input {
+  width: 70px;
+  border-radius: 1rem;
+  background-color: #fffefe;
+  padding: 0.4rem;
+  text-align: center;
+  border: none;
+}
+.container .request input::placeholder {
+  font-size: 0.9rem;
+  color: rgb(181, 178, 178);
+  text-transform: uppercase;
+  text-align: center;
+}
+.container .request .inputs-label {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0 1rem;
 }
-.container-head .close {
+.container .request .inputs-label label {
+  text-transform: uppercase;
+  margin: 0.7rem 0 0.5rem 0;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.container .request button {
+  font-size: 1.4rem;
+  margin: 0.8rem 0 0.2rem 0;
+  border: none;
+}
+.container .close {
   background-color: #ea0505;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.container .close h2 {
+  font-size: 1.3rem;
+  margin-top: 0.8rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+.container .close input {
+  width: 70px;
+  border-radius: 1rem;
+  background-color: #fffefe;
+  padding: 0.4rem;
+  text-align: center;
+  border: none;
+}
+.container .close input::placeholder {
+  font-size: 0.9rem;
+  color: rgb(181, 178, 178);
+  text-transform: uppercase;
+  text-align: center;
+}
+.container .close .inputs-label {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0 1rem;
+}
+.container .close .inputs-label label {
+  text-transform: uppercase;
+  margin: 0.7rem 0 0.5rem 0;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.container .close button {
+  font-size: 1.4rem;
+  margin: 0.8rem 0 0.2rem 0;
+  border: none;
+}
+.container .movements {
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 200px;
+  border-radius: 1rem;
+}
+.container .movements-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.container .movements .movement-index {
+  border-radius: 1rem;
+  padding: 0.3rem;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 .app-error-modal {
   text-align: center;
   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 290px;
   height: 200px;
   padding: 2.5rem 1.2rem;
@@ -727,8 +843,9 @@ input {
 
 #app-error-btn {
   position: fixed;
-  right: 27px;
-  top: 210px;
+  right: 16px;
+  top: 10px;
+  border: none;
 }
 
 .overlay-app {
@@ -763,6 +880,22 @@ input {
 
 .vanish-alert {
   right: -500px;
+}
+
+.deposit {
+  background-color: #04c800;
+}
+
+.withdrawal {
+  background-color: #ff0808;
+}
+
+.white-row {
+  background-color: #efeeee;
+}
+
+.gray-row {
+  background-color: #d4cdcd;
 }
 
 /*# sourceMappingURL=app.css.map */

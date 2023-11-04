@@ -10,11 +10,11 @@
   </head>
   <body onload="displayUI()">
     <div class="container">
-      <h1 class="welcome-title">
-        <img src="/assets/bank-logo.png" alt="" width="35px" />User Account
-      </h1>
-
       <div class="container-head">
+        <h1 class="welcome-title">
+          <img src="/assets/bank-logo.png" alt="" width="35px" />User Account
+        </h1>
+
         <div class="current-balance">
           <p>Current Balance</p>
           <label class="label-balance">50$</label>
@@ -23,42 +23,46 @@
           <div></div>
           <button onclick="logout()">Logout</button>
         </div>
-        <div class="transfer-request">
-          <div class="transfer">
-            <h2>Transfer Money</h2>
-            <div class="inputs-label">
-              <label>To:</label>
-              <label>Amount:</label>
-              <input type="text" id="transfer-to-input" placeholder="username" />
-              <input type="text" id="transfer-amount-input" placeholder="amount" />
-            </div>
-            <button class="transfer-btn btn"><i class="fa-solid fa-arrow-right"></i></button>
-          </div>
+      </div>
 
-          <div class="request">
-            <h2>Request Money</h2>
-            <div class="inputs-label">
-              <label>To:</label>
-              <label>Amount:</label>
-              <input type="text" id="request-to-input" placeholder="username" />
-              <input type="text" id="request-amount-input" placeholder="amount" />
-            </div>
-            <button class="request-btn btn"><i class="fa-solid fa-arrow-right"></i></button>
+      <div class="container-app-body">
+        <div class="transfer">
+          <h2>Transfer Money</h2>
+          <div class="inputs-label">
+            <label>To:</label>
+            <label>Amount:</label>
+            <input type="text" id="transfer-to-input" placeholder="user" />
+            <input type="text" id="transfer-amount-input" placeholder="0" />
           </div>
-          <div class="movements">
-            <!-- 2 deposit 300$ 1 withdrawal -200$-->
-            <div class="movement-index"></div>
-            <div class="movement-value"></div>
-            <div class="movement-index"></div>
-            <div class="movement-value"></div>
+          <button class="transfer-btn btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="request">
+          <h2>Request Money</h2>
+          <div class="inputs-label">
+            <label>To:</label>
+            <label>Amount:</label>
+            <input type="text" id="request-to-input" placeholder="user" />
+            <input type="text" id="request-amount-input" placeholder="0" />
           </div>
-          <div class="close">
-            <label for="">Confirm username: </label>
-            <input type="text" id="close-username-input" />
+          <button class="request-btn btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <div class="movements">
+          <!-- 2 deposit 300$ 1 withdrawal -200$-->
+          <div class="movements-row">
+            <div class="movement-index">1 deposit</div>
+            <div class="movement-value">300</div>
+          </div>
+        </div>
+        <div class="close">
+          <h2>Close Account</h2>
+          <div class="inputs-label">
+            <label>Confirm:</label>
             <label>Pin:</label>
-            <input type="text" id="close-pin-input" />
-            <button class="close-btn btn">close account</button>
+            <input type="text" id="close-username-input" placeholder="user" />
+            <input type="text" id="close-pin-input" placeholder="0000" />
           </div>
+          <button class="close-btn btn"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
       </div>
     </div>

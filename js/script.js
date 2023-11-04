@@ -105,14 +105,16 @@ function displayUI() {
 
   displaySuccessAlert('login');
   // using the active acc to display the ui
-  labelBalance.innerHTML = currentAccount.balance;
+  labelBalance.innerHTML = currentAccount.balance + '$';
   // looping through acc.movements and displaying the movements.
   movementsContainer.innerHTML = '';
   movements.forEach((element, index) => {
     let type = element > 0 ? 'deposit' : 'withdrawal';
     let html = `
-        <div class="movement-index">${index + ' ' + type.toUpperCase()}</div>
-        <div class="movement-value">${element}$</div>
+        <div class="movements-row ${index % 2 === 0 ? 'light-row' : 'gray-row'}">
+          <div class="movement-index ${type}">${index + ' ' + type.toUpperCase()}</div>
+          <div class="movement-value">${element}$</div>
+        </div>
   `;
 
     movementsContainer.insertAdjacentHTML('afterbegin', html);
@@ -353,7 +355,6 @@ function displaySuccessAlert(type, to, value) {
   } else if (type === 'login' && getCookie()) {
     // if type === login and its the first time login into the account then we display the
     const firstName = currentAccount.owner.split(' ').splice(0, 1);
-    console.log(currentAccount.owner);
     successAlert.innerHTML = `Welcome ${firstName}!`;
     document.cookie = 'firstTime=true';
     successAlert.classList.remove('vanish-alert');

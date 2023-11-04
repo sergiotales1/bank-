@@ -4,16 +4,11 @@ body {
   background-color: #f1f0f3;
   display: flex;
   font-family: 'Montserrat', sans-serif;
-  height: 100vh;
   align-items: center;
   justify-content: center;
 }
 
 button {
-  border: 1px solid;
-}
-
-input {
   border: 1px solid;
 }
 
@@ -26,18 +21,17 @@ input {
   background-color: #fff;
   width: 315px;
 
-  .welcome-title {
-    text-align: center;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   &-head {
     width: 300px;
     margin: 0 auto;
 
+    .welcome-title {
+      text-align: center;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .current-balance {
       display: flex;
       justify-content: space-between;
@@ -47,60 +41,63 @@ input {
       display: flex;
       justify-content: space-between;
     }
+  }
 
-    .transfer-request {
+  &-app-body {
+    display: flex;
+    flex-direction: column;
+    padding: 0.6rem;
+    gap: 1rem;
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .transfer {
+    background-color: #745efa;
+    @include feature-cards;
+  }
+
+  .request {
+    background-color: #1fd953;
+    @include feature-cards;
+  }
+
+  .close {
+    background-color: #ea0505;
+    @include feature-cards;
+  }
+
+  .movements {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 200px;
+    border-radius: 1rem;
+
+    &-row {
       display: flex;
-      flex-direction: column;
-      padding: 0.6rem;
-      gap: 1rem;
+      justify-content: space-between;
+      padding: 1rem;
     }
 
-    .transfer,
-    .request,
-    .close {
+    .movement-index {
       border-radius: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      input {
-        width: 70px;
-      }
-      .inputs-label {
-        margin: 1rem 0;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 0 1rem;
-      }
+      padding: 0.3rem;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: bold;
     }
 
-    .request {
-      background-color: #1fd953;
-    }
-
-    .transfer {
-      background-color: #745efa;
-    }
-
-    .movements {
-      overflow: scroll;
-      overflow-x: hidden;
-      height: 100px;
-      background-color: #d1d1d1;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .close {
-      background-color: #ea0505;
-    }
+    // .movement-value {
+    // }
   }
 }
 
 .app-error-modal {
   text-align: center;
   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 290px;
   height: 200px;
   padding: 2.5rem 1.2rem;
@@ -118,8 +115,9 @@ input {
 
 #app-error-btn {
   position: fixed;
-  right: 27px;
-  top: 210px;
+  right: 16px;
+  top: 10px;
+  border: none;
 }
 
 .overlay-app {
@@ -154,4 +152,20 @@ input {
 
 .vanish-alert {
   right: -500px;
+}
+
+.deposit {
+  background-color: #04c800;
+}
+
+.withdrawal {
+  background-color: #ff0808;
+}
+
+.white-row {
+  background-color: #efeeee;
+}
+
+.gray-row {
+  background-color: #d4cdcd;
 }

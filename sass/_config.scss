@@ -37,3 +37,55 @@ input[type='number'] {
   appearance: textfield;
   -moz-appearance: textfield;
 }
+
+@mixin feature-cards {
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 0.8rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+  }
+
+  input {
+    width: 70px;
+    border-radius: 1rem;
+    background-color: #fffefe;
+    padding: 0.4rem;
+    text-align: center;
+    border: none;
+
+    &::placeholder {
+      font-size: 0.9rem;
+      color: rgb(181, 178, 178);
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+
+  .inputs-label {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0 1rem;
+
+    label {
+      text-transform: uppercase;
+      margin: 0.7rem 0 0.5rem 0;
+      font-weight: bold;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  }
+
+  button {
+    font-size: 1.4rem;
+    margin: 0.8rem 0 0.2rem 0;
+    border: none;
+  }
+}
