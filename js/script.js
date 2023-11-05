@@ -312,7 +312,7 @@ function transfer(index) {
     if (!(+index === 0)) {
       setTimeout(() => {
         window.location.reload();
-      }, 1420); // note that we will wait until displaySuccessAlert do all the cycle
+      }, 920); // note that we will wait until displaySuccessAlert do all the cycle
     } else {
       window.location.reload();
     }
