@@ -89,3 +89,40 @@ input[type='number'] {
     border: none;
   }
 }
+
+@mixin feature-cards-md {
+  @include responsive-md {
+    padding: 0.4rem;
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    input {
+      width: 77px;
+      font-size: 1.3rem;
+      padding: 0.4rem 0.2rem;
+
+      &::placeholder {
+        font-size: 1rem;
+      }
+    }
+
+    .inputs-label {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1rem;
+
+      label {
+        text-transform: uppercase;
+        margin: 1.1rem 0 0 0;
+        font-size: 0.9rem;
+      }
+    }
+
+    button {
+      font-size: 1.7rem;
+      margin: 0.6rem 0 0.2rem 0;
+      padding: 0;
+    }
+  }
+}

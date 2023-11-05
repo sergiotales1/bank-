@@ -271,7 +271,7 @@ const globalModal = function (modal, text) {
     // APP ERROR MODAL
 
     // here we are recreating the appModal just to show the right values and messages and also create the transfer or ignore button
-    errorApp.innerHTML = `<p id="app-error-text">User - ${currentAccount.requestedMoves[0][0]} -  is requesting for you a transfer of ${currentAccount.requestedMoves[0][1]}$</p><button id="app-error-btn">ignore</button><button id="modal-transfer-button" onclick="transfer('0')">transfer</button>`;
+    errorApp.innerHTML = `<p id="app-error-text">User - ${currentAccount.requestedMoves[0][0]} -  is requesting for you a transfer of ${currentAccount.requestedMoves[0][1]}$</p><button id="app-error-btn">X</button><button id="modal-transfer-button" onclick="transfer('0')">transfer</button>`;
     // Shows the modal
     toggleModal(errorApp, overlayApp);
   }

@@ -486,8 +486,8 @@ input[type=number] {
   }
   button#login-error-btn,
   button#app-error-btn {
-    right: 590px;
-    top: 300px;
+    right: 15px;
+    top: 10px;
   }
   div.overlay {
     backdrop-filter: blur(3px);
