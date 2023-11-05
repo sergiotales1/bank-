@@ -104,6 +104,12 @@ function displayUI() {
   }
 
   displaySuccessAlert('login');
+  document.querySelector(
+    '.welcome-title'
+  ).innerHTML = `<img src="/assets/bank-logo.png" alt="" width="35px" />${currentAccount.owner
+    .split(' ')
+    .splice(0, 1)}'s account`;
+
   // using the active acc to display the ui
   labelBalance.innerHTML = currentAccount.balance + '$';
   // looping through acc.movements and displaying the movements.

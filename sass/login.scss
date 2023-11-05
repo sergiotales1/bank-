@@ -150,6 +150,10 @@ body {
       cursor: pointer;
       margin-top: 1rem;
       box-shadow: $box-shadow;
+
+      &:active {
+        transform: scale(90%);
+      }
     }
   }
 }

@@ -760,6 +760,9 @@ body {
   margin-top: 1rem;
   box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.5);
 }
+.container-signUp .input-container button:active {
+  transform: scale(90%);
+}
 
 .container-login {
   display: flex;
