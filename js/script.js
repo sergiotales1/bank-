@@ -49,10 +49,11 @@ function login() {
   // creating the cookie to show welcome modal
   document.cookie = 'firstTime=false';
   // check if the values are exist
-  if (accounts.some(acc => acc.username === loginUsername.value && acc.pin === +loginPw.value)) {
+  const loginInput = loginUsername.value.toLowerCase();
+  if (accounts.some(acc => acc.username === loginInput && acc.pin === +loginPw.value)) {
     // saving the current account that we are into
     currentAccount = accounts.find(
-      acc => acc.username === loginUsername.value && acc.pin === Number(loginPw.value)
+      acc => acc.username === loginInput && acc.pin === Number(loginPw.value)
     );
     currentAccount.active = true;
     updateLocalStorage(currentAccount);
