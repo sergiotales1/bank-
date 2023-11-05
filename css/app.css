@@ -624,11 +624,14 @@ body {
 
 .container {
   background-color: #fff;
-  width: 315px;
+  width: 300px;
+  margin-top: 25px;
+  border-radius: 30px;
 }
 .container-head {
   width: 300px;
   margin: 0 auto;
+  padding: 0.7rem;
 }
 .container-head .welcome-title {
   text-align: center;
@@ -648,6 +651,7 @@ body {
 .container-head .logout button {
   color: white;
   font-size: 0.9rem;
+  font-weight: bold;
   background-color: black;
   text-transform: uppercase;
   padding: 0.6rem 0.8rem;
@@ -908,21 +912,22 @@ body {
     height: 100vh;
   }
   .container {
+    margin-top: 0;
     width: 790px;
-    height: auto;
+    height: 725px;
     display: grid;
     border-radius: 20px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(4, auto);
   }
   .container-head {
-    width: 790px;
-    padding: 1rem;
+    width: 730px;
+    padding: 0.3rem 1rem;
     grid-column: 1/span 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 3rem 1.5rem 2rem;
-    row-gap: 0.9rem;
+    row-gap: 1.3rem;
   }
   .container-head .welcome-title {
     grid-column: 1/span 2;
@@ -933,6 +938,7 @@ body {
     grid-column: 1/span 2;
     grid-row: 2;
     font-size: 1.5rem;
+    margin-top: 1rem;
   }
   .container-head .current-balance p {
     font-weight: bold;
@@ -946,6 +952,7 @@ body {
     margin: 0;
   }
   .container-app-body {
+    margin-top: -10px;
     grid-row: 2/span 3;
     grid-column: 1/span 2;
     display: grid;
@@ -960,6 +967,7 @@ body {
     grid-column: 2;
     grid-row: 1/span 3;
     height: auto;
+    margin-right: -10px;
   }
   .container-app-body .transfer {
     grid-row: 1/2;
