@@ -149,6 +149,12 @@ function displayUI() {
         requestedAcc.requestedMoves.push([currentAccount.username, amount]);
         updateLocalStorage(requestedAcc);
         requestToInput.value = requestAmount.value = '';
+      } else {
+        globalModal(
+          'app',
+          "The requested account doesn't has this amount or you are trying to request money to yourself."
+        );
+        requestToInput.value = requestAmount.value = '';
       } // we need a block to when some condition don't match
     } else {
       // shows the modal
@@ -291,39 +297,46 @@ function transfer(index) {
     receiverAcc = retrieveAcc(transferToInput.value.toLowerCase());
     amount = Number(transferAmount.value);
   }
-  if (
-    amount <= currentAccount.balance &&
-    receiverAcc &&
-    receiverAcc.username !== currentAccount.username
-  ) {
-    // updating movements array with the new transfer
-    currentAccount.movements.push(-amount);
-    receiverAcc.movements.push(amount);
-    transferAmount.value = transferToInput.value = '';
-    // updating balance with new values
-    setBalance(currentAccount);
 
-    // updating localStorage
-    updateLocalStorage(receiverAcc);
-    updateLocalStorage(currentAccount);
-    // localStorage.setItem(receiverAcc.username, JSON.stringify(receiverAcc));
-    // localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
-    displayUI();
-    displaySuccessAlert('transfer', receiverAcc.username, amount);
-    if (!(+index === 0)) {
-      setTimeout(() => {
-        window.location.reload();
-      }, 920); // note that we will wait until displaySuccessAlert do all the cycle
-    } else {
-      window.location.reload();
-    }
-    // reloading to avoid bugs request bug after transfer
-  } else {
+  // we analyze if the receiver username is the same as current
+  if (receiverAcc.username === currentAccount.username) {
     transferAmount.value = transferToInput.value = '';
-    globalModal(
-      'app',
-      "We don't have this account into our system or you don't have enough value to proceed."
-    );
+    globalModal('app', 'You cannot transfer money to yourself! <br>Try again with other accounts');
+  } else {
+    if (
+      amount <= currentAccount.balance &&
+      receiverAcc &&
+      receiverAcc.username !== currentAccount.username
+    ) {
+      // updating movements array with the new transfer
+      currentAccount.movements.push(-amount);
+      receiverAcc.movements.push(amount);
+      transferAmount.value = transferToInput.value = '';
+      // updating balance with new values
+      setBalance(currentAccount);
+
+      // updating localStorage
+      updateLocalStorage(receiverAcc);
+      updateLocalStorage(currentAccount);
+      // localStorage.setItem(receiverAcc.username, JSON.stringify(receiverAcc));
+      // localStorage.setItem(currentAccount.username, JSON.stringify(currentAccount));
+      displayUI();
+      displaySuccessAlert('transfer', receiverAcc.username, amount);
+      if (!(+index === 0)) {
+        setTimeout(() => {
+          window.location.reload();
+        }, 920); // note that we will wait until displaySuccessAlert do all the cycle
+      } else {
+        window.location.reload();
+      }
+      // reloading to avoid bugs request bug after transfer
+    } else {
+      transferAmount.value = transferToInput.value = '';
+      globalModal(
+        'app',
+        "We don't have this account into our system or you don't have enough value to proceed."
+      );
+    }
   }
 }
 
