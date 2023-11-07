@@ -484,10 +484,9 @@ input[type=number] {
     height: 180px;
     font-size: 1.5rem;
   }
-  button#login-error-btn,
-  button#app-error-btn {
-    right: 15px;
-    top: 10px;
+  button#login-error-btn {
+    right: 585px;
+    top: 290px;
   }
   div.overlay {
     backdrop-filter: blur(3px);
@@ -660,6 +659,9 @@ body {
   cursor: pointer;
   margin-top: 1rem;
   box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.5);
+}
+.container-head .logout button:active {
+  transform: scale(90%);
 }
 .container-head .logout button .logout button:active {
   transform: scale(90%);

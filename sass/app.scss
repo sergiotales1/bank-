@@ -48,6 +48,9 @@ body {
         margin-top: 1rem;
         box-shadow: $box-shadow;
 
+        &:active {
+          transform: scale(90%);
+        }
         .logout button:active {
           transform: scale(90%);
         }

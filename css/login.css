@@ -484,10 +484,9 @@ input[type=number] {
     height: 180px;
     font-size: 1.5rem;
   }
-  button#login-error-btn,
-  button#app-error-btn {
-    right: 15px;
-    top: 10px;
+  button#login-error-btn {
+    right: 585px;
+    top: 290px;
   }
   div.overlay {
     backdrop-filter: blur(3px);
@@ -644,8 +643,8 @@ body {
 
 #login-error-btn {
   position: fixed;
-  right: 27px;
-  top: 230px;
+  right: 35px;
+  top: 200px;
 }
 
 .overlay {
@@ -667,7 +666,7 @@ body {
   box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.5);
   background-color: #f1f0f3;
   border-radius: 18px;
-  margin-top: 65px;
+  margin-top: 55px;
 }
 .container-signUp .image-container {
   display: flex;
@@ -846,6 +845,9 @@ body {
   cursor: pointer;
   margin-top: 1rem;
   box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.5);
+}
+.container-login .input-container button:active {
+  transform: scale(90%);
 }
 
 .hidden {
