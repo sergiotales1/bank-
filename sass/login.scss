@@ -31,7 +31,7 @@ body {
 #login-error-btn {
   position: fixed;
   right: 27px;
-  top: 170px;
+  top: 230px;
 }
 
 .overlay {
@@ -51,6 +51,7 @@ body {
   box-shadow: $box-shadow;
   background-color: #f1f0f3;
   border-radius: $border-radius;
+  margin-top: 65px;
 
   .image-container {
     @include flex;

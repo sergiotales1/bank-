@@ -645,7 +645,7 @@ body {
 #login-error-btn {
   position: fixed;
   right: 27px;
-  top: 170px;
+  top: 230px;
 }
 
 .overlay {
@@ -667,6 +667,7 @@ body {
   box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.5);
   background-color: #f1f0f3;
   border-radius: 18px;
+  margin-top: 65px;
 }
 .container-signUp .image-container {
   display: flex;

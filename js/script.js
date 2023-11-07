@@ -135,8 +135,8 @@ function displayUI() {
   // REQUEST
   btnRequest.addEventListener('click', () => {
     // test if exists the requested acc into the db
-    if (accounts.some(acc => acc.username === requestToInput.value)) {
-      const requestedAcc = retrieveAcc(requestToInput.value);
+    if (accounts.some(acc => acc.username === requestToInput.value.toLowerCase())) {
+      const requestedAcc = retrieveAcc(requestToInput.value.toLowerCase());
       const amount = +requestAmount.value;
       if (
         requestedAcc.username !== currentAccount.username &&
@@ -162,7 +162,7 @@ function displayUI() {
 
   // CLOSE ACCOUNT
   btnClose.addEventListener('click', () => {
-    const closeAcc = retrieveAcc(closeUsername.value);
+    const closeAcc = retrieveAcc(closeUsername.value.toLowerCase());
     if (
       closeAcc &&
       closeAcc.username === currentAccount.username &&
@@ -288,7 +288,7 @@ function transfer(index) {
     amount = currentAccount.requestedMoves[+index][1];
     currentAccount.requestedMoves.splice(+index, 1);
   } else {
-    receiverAcc = retrieveAcc(transferToInput.value);
+    receiverAcc = retrieveAcc(transferToInput.value.toLowerCase());
     amount = Number(transferAmount.value);
   }
   if (
