@@ -7,8 +7,8 @@ I saw some features that i could work on to improve, and at the current stage of
 ## TRANSFER & REQUEST MONEY
 ![Untitled design (3)](https://github.com/sergiotales1/bank-/assets/130707480/83633311-de4e-479f-8033-81138dbf1d48)
 
-
-We transfer just with a push into the movements array with the valor of the transfer, if user 1 is transfering 200$ to user 2, we will add a -200 element into user 1 movements and a 200 element into user 2 movements array.
+<br>
+We transfer just with a push into the movements array with the valor of the transfer, if user 1 is transfering 200$ to user 2, we will add a -200 element into user 1 movements and a 200 element into user 2 movements array. <br><br>
 To do the request we create another array which will store all requests that are done into the app.
 
 
@@ -16,6 +16,7 @@ To do the request we create another array which will store all requests that are
 ## CREATE ACCOUNT
 ![Untitled design (4)](https://github.com/sergiotales1/bank-/assets/130707480/2b3031d1-bddd-40b9-abde-810877ed640e)
 
+<br>
 This project work with localStorage to store and manage all accounts, each action done into the site will be parsed to the localStorage then retrieved to JavaScript again.
 
 Still working on updates!
